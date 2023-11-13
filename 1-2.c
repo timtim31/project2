@@ -15,26 +15,30 @@ float function(float x);
 */
 double fun_scan();
 
+/**
+ * @brief Вводимое значение в программу 
+ * @return Вывод 0, если программа неверна. Иначе вывод 1
+*/
+int main();
+
 int main()
 {
-  float a, r;
-  a = fun_scan();
-  r=function(a);
-  printf("r=%f\n", r);
+  float a = fun_scan();
+  printf("r=%f\n", function(a));
 }
 
 float function(float x)
 {
-  float y=x/2.5;
-  return (y);
+  return x/2.5;
 }
 
 double fun_scan() {
-    int a;
-    double b;
-    a=scanf("%lf", &b);
-    if (a!=1){
-        abort();
+  double value;
+  int result = scanf("%lf", &value);
+    if (result != 1)
+    {
+      printf_s("error io");
+      abort();
     } 
-    return b;
+    return value;
 }
