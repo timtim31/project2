@@ -11,7 +11,7 @@ float function(float g, float m, float f);
 
 /**
  * @brief Функция проверки ввода на число 
- * @param a значение вводимого параметра 
+ * @param value значение вводимого параметра 
  * @return Результат проверки   
 */
 double fun_scan();
@@ -24,8 +24,7 @@ int main();
 
 int main()
 {
-    float r, m, f;
-    float g;
+    float r, m, f, g;
     m = fun_scan();
     f = fun_scan();
     
@@ -37,16 +36,16 @@ int main()
 
 float function(float g, float m, float f)
 {
-    float r=pow(((g*m*m)/f),0.5);
-    return (r);
+    return (pow(((g*m*m)/f),0.5));
 }
 
 double fun_scan() {
-    int a;
-    double b;
-    a=scanf("%lf", &b);
-    if (a!=1){
-        abort();
+  double value;
+  int result = scanf("%lf", &value);
+    if (result != 1)
+    {
+      printf_s("error io");
+      abort();
     } 
-    return b;
+    return value;
 }
