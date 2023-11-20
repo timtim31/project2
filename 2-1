@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+enum Numbers {
+    first,second,third
+};
+int a=first;
+int b=second;
+int c=third;
+
+/**
+ * @brief Функция проверки ввода на число 
+ * @param a значение вводимого параметра 
+ * @return Результат проверки   
+*/
+double fun_scan();
+
+int main()
+{
+    int a, b, c, z;
+    a = fun_scan();
+    b = fun_scan();
+    c = fun_scan();
+        if (a > c) {
+            z = a; a = c; c = z;
+        }
+        if (a > b) {
+            z = a; a = b; b = z;
+        }
+        if (b > c) {
+            z = b; b = c; c = z;
+        }
+ 
+        printf(" %d\n%d\n%d\n", a, b, c);
+        if (a < c) {
+            z = a; a = c; c = z;
+        }
+        if (a < b) {
+            z = a; a = b; b = z;
+        }
+        if (b < c) {
+            z = b; b = c; c = z;
+        }
+        printf(" %d\n%d\n%d\n", a, b, c);
+    return 0;
+}
+
+double fun_scan() {
+    int a;
+    double b;
+    a=scanf("%lf", &b);
+    if (a!=1){
+        abort();
+    } 
+    return b;
+}
