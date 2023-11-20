@@ -1,0 +1,77 @@
+#include <stdio.h> 
+#include <math.h> 
+#include <stdlib.h>
+
+/** 
+ * @brief Функция расчета формулы
+ * @param x, a значения параметров
+ * @return q значение вычислений  
+*/
+float function1(float x, float a, float q);
+
+/**
+ * @brief Функция расчета формулы
+ * @param x, a значения параметров
+ * @return q значение вычислений  
+*/
+float function2(float x, float a, float q);
+
+/**
+ * @brief Функция расчета формулы
+ * @param x, a значения параметров
+ * @return q значение вычислений  
+*/
+float function3(float x, float a, float q);
+
+/**
+ * @brief Функция проверки ввода на число 
+ * @param x значение вводимого параметра 
+ * @return Результат проверки   
+*/
+double fun_scan();
+
+int main()
+{
+    float a, x, y, q;
+    a=2.5;
+    x = fun_scan();
+    if (x<0.5) {
+        y=function1(x, a, q);
+        printf("y=%f\n", y);
+    }
+    if (x==0.5) {
+        y=function2(x, a, q);
+        printf("y=%f\n", y);
+    }
+    if (x>0.5) {
+        y=function3(x, a, q);
+        printf("y=%f\n", y);
+    }
+}
+
+float function1(float x, float a, float q)
+{
+    q= pow((a*pow(x,2) +1),0.5);
+    return (q);
+}
+
+float function2(float x, float a, float q)
+{
+    q= a*x +3;
+    return (q);
+}
+float function3(float x, float a, float q)
+{
+    q= pow((a*pow(x,2) -1),0.5);
+    return (q);
+}
+
+double fun_scan() {
+    int a;
+    double b;
+    a=scanf("%lf", &b);
+    if (a!=1){
+        abort();
+    } 
+    return b;
+}
