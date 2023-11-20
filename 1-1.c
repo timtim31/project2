@@ -15,6 +15,12 @@ float function(float x, float y, float z);
 */ 
 float function1(float x, float y, float z); 
 
+/**
+ * @brief Вводимое значение в программу 
+ * @return Вывод 0, если программа неверна. Иначе вывод 1
+*/
+int main();
+
 int main ()  
 {  
     float x, y, z, a, b;  
@@ -28,11 +34,9 @@ int main ()
 
 float function(float x, float y, float z) 
 { 
-    float q=(pow(z, 2 * x) + pow (y, -1) * cos(z + y) * x) / (x + 1); 
-    return (q); 
+    return ((pow(z, 2 * x) + pow (y, -1) * cos(z + y) * x) / (x + 1)); 
 } 
 float function1(float x, float y, float z) 
-{ 
-    float w=pow(pow (x, 2) + y, 0.5) - pow(y, 2) * pow(sin((x + z) / x), 3); 
-    return (w); 
+{  
+    return (pow(pow (x, 2) + y, 0.5) - pow(y, 2) * pow(sin((x + z) / x), 3)); 
 } 
