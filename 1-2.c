@@ -10,7 +10,7 @@ float function(float x);
 
 /**
  * @brief Функция проверки ввода на число 
- * @param a значение вводимого параметра 
+ * @param  value значение вводимого параметра 
  * @return Результат проверки   
 */
 double fun_scan();
