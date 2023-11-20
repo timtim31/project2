@@ -11,7 +11,7 @@ float function(float x);
 
 /**
  * @brief Функция проверки ввода на число 
- * @param x значение вводимого параметра 
+ * @param value значение вводимого параметра 
  * @return Результат проверки   
 */
 double fun_scan();
@@ -37,11 +37,12 @@ float function(float x)
 }
 
 double fun_scan() {
-    int a;
-    double b;
-    a=scanf("%lf", &b);
-    if ((a!=1)||(a<0)){
-        abort();
+  double value;
+  int result = scanf("%lf", &value);
+    if ((result != 1)||(result<0))
+    {
+      printf("error io");
+      abort();
     } 
-    return b;
+    return value;
 }
