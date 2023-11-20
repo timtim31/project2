@@ -25,7 +25,7 @@ float function3(float x, float a, float q);
 
 /**
  * @brief Функция проверки ввода на число 
- * @param x значение вводимого параметра 
+ * @param value значение вводимого параметра 
  * @return Результат проверки   
 */
 double fun_scan();
@@ -55,29 +55,27 @@ int main()
     }
 }
 
-float function1(float x, float a, float q)
+float function1(float x, float a)
 {
-    q= pow((a*pow(x,2) +1),0.5);
-    return (q);
+    return (pow((a*pow(x,2) +1),0.5));
 }
 
-float function2(float x, float a, float q)
+float function2(float x, float a)
 {
-    q= a*x +3;
-    return (q);
+    return (a*x +3);
 }
-float function3(float x, float a, float q)
+float function3(float x, float a)
 {
-    q= pow((a*pow(x,2) -1),0.5);
-    return (q);
+    return (pow((a*pow(x,2) -1),0.5));
 }
 
 double fun_scan() {
-    int a;
-    double b;
-    a=scanf("%lf", &b);
-    if (a!=1){
-        abort();
+  double value;
+  int result = scanf("%lf", &value);
+    if (result != 1)
+    {
+      printf_s("error io");
+      abort();
     } 
-    return b;
+    return value;
 }
