@@ -44,7 +44,7 @@ double fun_scan() {
   int result = scanf("%lf", &value);
     if (result != 1)
     {
-      printf_s("error io");
+      printf("error io");
       abort();
     } 
     return value;
