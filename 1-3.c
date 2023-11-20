@@ -16,6 +16,12 @@ float function(float g, float m, float f);
 */
 double fun_scan();
 
+/**
+ * @brief Вводимое значение в программу 
+ * @return Вывод 0, если программа неверна. Иначе вывод 1
+*/
+int main();
+
 int main()
 {
     float r, m, f;
