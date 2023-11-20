@@ -1,0 +1,99 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+double fun_scan();
+int max(int a, int b, int c, int maximum);
+int main()
+{
+    int a, b, c, z;
+    int maximum = 0;
+    a = fun_scan();
+    b = fun_scan();
+    c = fun_scan();
+    z = max(a,b,c,maximum);
+    printf("%d\n", z);
+    return 0;
+}
+
+int max(int a, int b, int c, int maximum)
+{
+if (a>b){
+    maximum=a;
+    if (maximum>c){
+        printf(" %d\n%d\n%d\n", maximum, b, c);
+        abort();
+    }
+    if (maximum<c){
+        printf(" %d\n%d\n%d\n", c, b, maximum);
+        abort();
+    }
+}
+if (b>a){
+    maximum=b;
+    if (maximum>c){
+        printf(" %d\n%d\n%d\n", maximum, a, c);
+        abort();
+    }
+    if (maximum<c){
+        printf(" %d\n%d\n%d\n", c, a, maximum);
+        abort();
+    }
+}
+if (b>c){
+    maximum=b;
+    if (maximum>a){
+        printf(" %d\n%d\n%d\n", maximum, c, a);
+        abort();
+    }
+    if (maximum<a){
+        printf(" %d\n%d\n%d\n", a, c, maximum);
+        abort();
+    }
+}
+if (c>b){
+    maximum=c;
+    if (maximum>a){
+        printf(" %d\n%d\n%d\n", maximum, b, a);
+        abort();
+    }
+    if (maximum<a){
+        printf(" %d\n%d\n%d\n", a, b, maximum);
+        abort();
+    }
+}
+if (a>c){
+    maximum=a;
+    if (maximum>b){
+        printf(" %d\n%d\n%d\n", maximum, c, b);
+        abort();
+    }
+    if (maximum<b){
+        printf(" %d\n%d\n%d\n", b, c, maximum);
+        abort();
+    }
+}
+if (c>a){
+    maximum=c;
+    if (maximum>b){
+        printf(" %d\n%d\n%d\n", maximum, a, b);
+        abort();
+    }
+    if (maximum<b){
+        printf(" %d\n%d\n%d\n", b, a, maximum);
+        abort();
+    }
+}
+}
+
+
+
+double fun_scan() {
+  double value;
+  int result = scanf("%lf", &value);
+    if (result != 1)
+    {
+      printf("error io");
+      abort();
+    } 
+    return value;
+}
