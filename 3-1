@@ -1,0 +1,47 @@
+#include <math.h> 
+#include <stdio.h> 
+#include <stdlib.h>
+
+/**
+ * @brief Функция расчета формулы
+ * @param x значение параметра
+ * @return Значение вычисления y  
+*/
+float function(float x);
+
+/**
+ * @brief Функция проверки ввода на число 
+ * @param x значение вводимого параметра 
+ * @return Результат проверки   
+*/
+double fun_scan();
+
+/**
+ * @brief Точка входа в программу  
+ * @return Вывод 0, если программа работает неверно. Иначе вывод 1  
+*/
+int main();
+
+int main () 
+{ 
+    float x, y, x1 = fun_scan(), x2 = fun_scan(), x3 = fun_scan(); 
+    for (x=x1; x<x2+0.2; x+=x3){
+        y=function(x);
+        printf ("y=%f\n x=%f\n", y, x); 
+    }
+}
+
+float function(float x)
+{
+    return (3*pow(log(x), 2) + 6*log(x)-5);
+}
+
+double fun_scan() {
+    int a;
+    double b;
+    a=scanf("%lf", &b);
+    if ((a!=1)||(a<0)){
+        abort();
+    } 
+    return b;
+}
