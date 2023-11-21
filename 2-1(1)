@@ -24,7 +24,7 @@ if (a>b){
         abort();
     }
     if (maximum<c){
-        printf(" %d\n%d\n%d\n", c, b, maximum);
+        printf(" %d\n%d\n%d\n", c, maximum, b);
         abort();
     }
 }
@@ -35,7 +35,7 @@ if (b>a){
         abort();
     }
     if (maximum<c){
-        printf(" %d\n%d\n%d\n", c, a, maximum);
+        printf(" %d\n%d\n%d\n", c, maximum, a);
         abort();
     }
 }
@@ -57,7 +57,7 @@ if (c>b){
         abort();
     }
     if (maximum<a){
-        printf(" %d\n%d\n%d\n", a, b, maximum);
+        printf(" %d\n%d\n%d\n", a, maximum, b);
         abort();
     }
 }
@@ -79,7 +79,7 @@ if (c>a){
         abort();
     }
     if (maximum<b){
-        printf(" %d\n%d\n%d\n", b, a, maximum);
+        printf(" %d\n%d\n%d\n", b, maximum, a);
         abort();
     }
 }
