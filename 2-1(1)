@@ -1,10 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * @brief Функция проверки ввода на число 
+ * @param value значение вводимого параметра 
+ * @return Результат проверки   
+*/
 double fun_scan();
+
+/**
+ * @brief Функция вывода чисел в порядке убывания 
+ * @param a, b, c значения вводимых параметров
+ * @return Результат функции    
+*/
 int max(int a, int b, int c, int maximum, int average, int minimum);
+
+/**
+ * @brief Функция вывода чисел в порядке возрастания  
+ * @param a, b, c значения вводимых параметров
+ * @return Результат функции    
+*/
 int min(int a, int b, int c, int maximum, int average, int minimum);
+
+/**
+ * @brief Вводимое значение в программу 
+ * @return Вывод 0, если программа неверна. Иначе вывод 1
+*/
 int main();
+
 int main()
 {
     int a, b, c, z, q;
@@ -32,14 +55,12 @@ int max(int a, int b, int c, int maximum, int average, int minimum)
             minimum=b;
             average=c;
             printf(" %d\n%d\n%d\n", maximum, average, minimum);
-            abort();
         }
         else
         {
             minimum=c;
             average=b;
             printf(" %d\n%d\n%d\n", maximum, average, minimum);
-            abort();
         }
     }
     if ((b>a)&&(b>c))
@@ -50,14 +71,12 @@ int max(int a, int b, int c, int maximum, int average, int minimum)
             minimum=a;
             average=c;
             printf(" %d\n%d\n%d\n", maximum, average, minimum);
-            abort();
         }
         else
         {
             minimum=c;
             average=a;
             printf(" %d\n%d\n%d\n", maximum, average, minimum);
-            abort();
         }
     }
     if ((c>a)&&(c>b))
@@ -68,14 +87,12 @@ int max(int a, int b, int c, int maximum, int average, int minimum)
             minimum=a;
             average=b;
             printf(" %d\n%d\n%d\n", maximum, average, minimum);
-            abort();
         }
         else
         {
             minimum=b;
             average=a;
             printf(" %d\n%d\n%d\n", maximum, average, minimum);
-            abort();
         }
     }
 }
@@ -90,14 +107,12 @@ int min(int a, int b, int c, int maximum, int average, int minimum)
             maximum=c;
             average=b;
             printf(" %d\n%d\n%d\n", minimum, average, maximum);
-            abort();
         }
         else
         {
             maximum=b;
             average=c;
             printf(" %d\n%d\n%d\n", minimum, average, maximum);
-            abort();
         }
     }
     if ((b<a)&&(b<c))
@@ -108,14 +123,12 @@ int min(int a, int b, int c, int maximum, int average, int minimum)
             maximum=c;
             average=a;
             printf(" %d\n%d\n%d\n", minimum, average, maximum);
-            abort();
         }
         else
         {
             maximum=a;
             average=c;
             printf(" %d\n%d\n%d\n", minimum, average, maximum);
-            abort();
         }
     }
     if ((c<a)&&(c<b))
@@ -126,14 +139,12 @@ int min(int a, int b, int c, int maximum, int average, int minimum)
             maximum=b;
             average=a;
             printf(" %d\n%d\n%d\n", minimum, average, maximum);
-            abort();
         }
         else
         {
             maximum=a;
             average=b;
             printf(" %d\n%d\n%d\n", minimum, average, maximum);
-            abort();
         }
     }
 }
