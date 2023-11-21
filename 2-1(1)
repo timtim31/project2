@@ -2,89 +2,78 @@
 #include <stdlib.h>
 
 double fun_scan();
-int max(int a, int b, int c, int maximum);
+int max(int a, int b, int c, int maximum, int average, int minimum);
 int main()
 {
     int a, b, c, z;
     int maximum = 0;
+    int average = 0;
+    int minimum = 0;
     a = fun_scan();
     b = fun_scan();
     c = fun_scan();
-    z = max(a,b,c,maximum);
+    z = max(a,b,c,maximum, average, minimum);
     printf("%d\n", z);
     return 0;
 }
 
-int max(int a, int b, int c, int maximum)
+int max(int a, int b, int c, int maximum, int average, int minimum)
 {
-if (a>b){
-    maximum=a;
-    if (maximum>c){
-        printf(" %d\n%d\n%d\n", maximum, b, c);
-        abort();
+    if ((a>b)&&(a>c))
+    {
+        maximum=a;
+        if (b<c)
+        {
+            minimum=b;
+            average=c;
+            printf(" %d\n%d\n%d\n", maximum, average, minimum);
+            abort();
+        }
+        else
+        {
+            minimum=c;
+            average=b;
+            printf(" %d\n%d\n%d\n", maximum, average, minimum);
+            abort();
+        }
     }
-    if (maximum<c){
-        printf(" %d\n%d\n%d\n", c, maximum, b);
-        abort();
+    if ((b>a)&&(b>c))
+    {
+        maximum=b;
+        if (a<c)
+        {
+            minimum=a;
+            average=c;
+            printf(" %d\n%d\n%d\n", maximum, average, minimum);
+            abort();
+        }
+        else
+        {
+            minimum=c;
+            average=a;
+            printf(" %d\n%d\n%d\n", maximum, average, minimum);
+            abort();
+        }
     }
-}
-if (b>a){
-    maximum=b;
-    if (maximum>c){
-        printf(" %d\n%d\n%d\n", maximum, a, c);
-        abort();
-    }
-    if (maximum<c){
-        printf(" %d\n%d\n%d\n", c, maximum, a);
-        abort();
-    }
-}
-if (b>c){
-    maximum=b;
-    if (maximum>a){
-        printf(" %d\n%d\n%d\n", maximum, c, a);
-        abort();
-    }
-    if (maximum<a){
-        printf(" %d\n%d\n%d\n", a, c, maximum);
-        abort();
-    }
-}
-if (c>b){
-    maximum=c;
-    if (maximum>a){
-        printf(" %d\n%d\n%d\n", maximum, b, a);
-        abort();
-    }
-    if (maximum<a){
-        printf(" %d\n%d\n%d\n", a, maximum, b);
-        abort();
-    }
-}
-if (a>c){
-    maximum=a;
-    if (maximum>b){
-        printf(" %d\n%d\n%d\n", maximum, c, b);
-        abort();
-    }
-    if (maximum<b){
-        printf(" %d\n%d\n%d\n", b, c, maximum);
-        abort();
-    }
-}
-if (c>a){
-    maximum=c;
-    if (maximum>b){
-        printf(" %d\n%d\n%d\n", maximum, a, b);
-        abort();
-    }
-    if (maximum<b){
-        printf(" %d\n%d\n%d\n", b, maximum, a);
-        abort();
+    if ((c>a)&&(c>b))
+    {
+        maximum=c;
+        if (a<b)
+        {
+            minimum=a;
+            average=b;
+            printf(" %d\n%d\n%d\n", maximum, average, minimum);
+            abort();
+        }
+        else
+        {
+            minimum=b;
+            average=a;
+            printf(" %d\n%d\n%d\n", maximum, average, minimum);
+            abort();
+        }
     }
 }
-}
-
 
 
 double fun_scan() {
