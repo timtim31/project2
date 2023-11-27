@@ -3,62 +3,47 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-/**
- * @brief Функция проверки ввода на число 
- * @param a значение вводимого параметра 
- * @return Результат проверки   
-*/
-int fun_scan();
-
-/**
- * @brief Функция расчета формулы
- * @param kol значение параметра
- * @return Значение вычислений  
-*/
-float function(int kol);
-
-/**
- * @brief Функция расчёта факториала
- * @param k значение вводимого параметра 
- * @return Значение вычисления   
-*/
+double fun_scan();
+float function(int a);
 int factorial(int k);
 
-int main(){
- int a;
- a = fun_scan();
- function(a);
- return 0;
-}
-
-float function(int kol)
+int main()
 {
- int a;
- float b, c;
- 
- for(int i = 0; i < kol; i++){
- a = pow(-1,i);
- b=pow(-1,i)/factorial(i+2);
- c+=b;
- }
- printf("%f\n", c);
- return 0;
+    int a = fun_scan();
+    float s=function(a);
+    printf("%f\n", s);
+    return 0;
 }
 
-int factorial(int k){
- int result = 1;
- for (int i=1; i<=k; i++)
- result = result * i;
- return result;
+float function(int a)
+{
+    float b, c;
+    for(int i = 1; i < a; i++)
+    {
+        b=pow(-1,i)/factorial(i*2);
+        c+=b;
+    }
+    return c;
 }
 
-int fun_scan() {
- int a;
- int b;
- a = scanf("%d", &b);
- if (a != 1) {
- abort();
- } else {
- return b;
- }
+int factorial(int k)
+{
+    int result = 1;
+    for (int i=1; i<=k; i++)
+    {
+        result = result * i;
+        return result;
+    }
+}
+
+double fun_scan() 
+{
+    double value;
+    int result = scanf("%lf", &value);
+    if (result != 1)
+    {
+        printf("error io");
+        abort();
+    } 
+    return value;
 }
