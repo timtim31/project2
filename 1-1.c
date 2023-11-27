@@ -19,8 +19,6 @@ float function1(float x, float y, float z);
  * @brief Вводимое значение в программу 
  * @return Вывод 0, если программа неверна. Иначе вывод 1
 */
-int main();
-
 int main ()  
 {  
     float x, y, z, a, b;  
