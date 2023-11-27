@@ -22,7 +22,7 @@ double fun_scan();
  * @param x1, x2 значения вводимыъх параметров 
  * @return Результат проверки   
 */
-double chek_function(float x1, float x2);
+double check_function(float x1, float x2);
 
 /**
  * @brief Точка входа в программу  
@@ -43,7 +43,7 @@ float function(float x)
     return (3*pow(log(x), 2) + 6*log(x)-5);
 }
 
-double chec_function(float x1, float x2)
+double check_function(float x1, float x2)
 {
     if (x1 - x2 > DBL_EPSILON)
     {
