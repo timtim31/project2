@@ -18,18 +18,16 @@ float function(float x);
 double fun_scan();
 
 /**
- * @brief Точка входа в программу  
- * @return Вывод 0, если программа работает неверно. Иначе вывод 1  
-*/
-int main();
-
-/**
  * @brief Функция проверки ввода концов отрезка 
  * @param x1, x2 значения вводимыъх параметров 
  * @return Результат проверки   
 */
 double chek_function(float x1, float x2);
 
+/**
+ * @brief Точка входа в программу  
+ * @return Вывод 0, если программа работает неверно. Иначе вывод 1  
+*/
 int main () 
 { 
     float x, y, w, x1 = fun_scan(), x2 = fun_scan(), x3 = fun_scan(); 
