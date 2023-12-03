@@ -18,25 +18,23 @@ int max(int a, int b, int c, int maximum, int average, int minimum);
 /**
  * @brief Функция вывода чисел в порядке возрастания  
  * @param a, b, c значения вводимых параметров
- * @return Результат функции    
+ * @return Результат функции 
 */
 int min(int a, int b, int c, int maximum, int average, int minimum);
 
 /**
- * @brief Вводимое значение в программу 
+ * @brief Вводимое значение для входа в программу 
  * @return Вывод 0, если программа неверна. Иначе вывод 1
 */
-int main();
-
 int main()
 {
-    int a, b, c, z, q;
+    int z, q;
     int maximum = 0;
     int average = 0;
     int minimum = 0;
-    a = fun_scan();
-    b = fun_scan();
-    c = fun_scan();
+    int a = fun_scan();
+    int b = fun_scan();
+    int c = fun_scan();
     z = max(a,b,c,maximum, average, minimum);
     q = min(a,b,c,maximum, average, minimum);
     
