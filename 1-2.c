@@ -16,13 +16,14 @@ float function(float x);
 double fun_scan();
 
 /**
- * @brief Вводимое значение в программу 
+ * @brief Вводимое значение для входа в программу 
  * @return Вывод 0, если программа неверна. Иначе вывод 1
 */
 int main()
 {
   float a = fun_scan();
   printf("r=%f\n", function(a));
+  return 0;
 }
 
 float function(float x)
