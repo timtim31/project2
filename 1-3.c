@@ -27,8 +27,8 @@ int main()
     float m = fun_scan();
     float f = fun_scan();
     r=formula(g, m, f);
-
     printf("r=%f\n", r);
+    return 0;
 }
 
 float formula(float g, float m, float f)
