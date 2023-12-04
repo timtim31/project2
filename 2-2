@@ -4,24 +4,24 @@
 
 /** 
  * @brief Функция расчета формулы
- * @param x, a значения параметров
+ * @param x, a значения вводимого параметра и константы
  * @return Вывод значения вычислений  
 */
-float function1(float x, float a, float q);
+float function1(float x, float a);
 
 /**
  * @brief Функция расчета формулы
- * @param x, a значения параметров
+ * @param x, a значения вводимого параметра и константы
  * @return Вывод значения вычислений    
 */
-float function2(float x, float a, float q);
+float function2(float x, float a);
 
 /**
  * @brief Функция расчета формулы
- * @param x, a значения параметров
+ * @param x, a значения вводимого параметра и константы
  * @return Вывод значения вычислений    
 */
-float function3(float x, float a, float q);
+float function3(float x, float a);
 
 /**
  * @brief Функция проверки ввода на число 
@@ -41,21 +41,21 @@ int main()
     float x = fun_scan();
     if (x<0.5) 
     {
-        y=function1(x, a, q);
+        y=function1(x, a);
         printf("y=%f\n", y);
     }
     else
     {
-           if (x==0.5) 
-           {
-                  y=function2(x, a, q);
-                  printf("y=%f\n", y);
-           }
-           else 
-           {
-                y=function3(x, a, q);
-                printf("y=%f\n", y);
-           }
+        if (x==0.5) 
+        {
+            y=function2(x, a);
+            printf("y=%f\n", y);
+        }
+        else 
+        {
+            y=function3(x, a);
+            printf("y=%f\n", y);
+        }
     }
     return 0;
 }
@@ -76,12 +76,12 @@ float function3(float x, float a)
 
 double fun_scan(double value) 
 {
-  double value;
-  int result = scanf("%lf", &value);
+    double value;
+    int result = scanf("%lf", &value);
     if (result != 1)
     {
-      printf_s("error io");
-      abort();
+        printf_s("error io");
+        abort();
     } 
     return value;
 }
