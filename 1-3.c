@@ -39,6 +39,7 @@ float formula(float m, float f)
 
 double fun_scan(double value) 
 {
+    double value;
     int result = scanf("%lf", &value);
     if ((result != 1)||(result>-DBL_EPSILON))
     {
