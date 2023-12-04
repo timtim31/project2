@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
- 
+#include <float.h>
+
 /**
  * @brief Функция расчета физической формулы
- * @param g, m, f значения константы и вводимых параметров
+ * @param m, f значения вводимых параметров
  * @return Значение вычисления формулы  
 */
 float formula(float m, float f);
@@ -23,8 +24,8 @@ double fun_scan(double value);
 int main()
 {
     float r;
-    float m = fun_scan();
-    float f = fun_scan();
+    float m = fun_scan(m);
+    float f = fun_scan(f);
     r=formula(m, f);
     printf("r=%f\n", r);
     return 0;
@@ -38,12 +39,11 @@ float formula(float m, float f)
 
 double fun_scan(double value) 
 {
-  double value;
-  int result = scanf("%lf", &value);
-    if ((result != 1)||(result<0))
+    int result = scanf("%lf", &value);
+    if ((result != 1)||(result>-DBL_EPSILON))
     {
-      printf("error io");
-      abort();
+        puts("error io");
+        abort();
     } 
     return value;
 }
