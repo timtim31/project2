@@ -19,10 +19,10 @@ double fun_scan(double value);
 
 /**
  * @brief Функция проверки ввода концов отрезка 
- * @param x1, x2 значения вводимыъх параметров 
+ * @param xStart, xEnd значения вводимыъх параметров концов отрезка
  * @return Результат проверки   
 */
-double check_function(float x1, float x2);
+float check_interval(float xStart, float xEnd);
 
 /**
  * @brief Точка входа в программу  
@@ -30,9 +30,9 @@ double check_function(float x1, float x2);
 */
 int main () 
 { 
-    float x, y, w, x1 = fun_scan(), x2 = fun_scan(), x3 = fun_scan(); 
-    w=chec_function(x1, x2);
-    for (x=x1; x<x2+0.2; x+=x3)
+    float x, y, xStart = fun_scan(), xEnd = fun_scan(), step = fun_scan(); 
+    check_interval(xStart, xEnd);
+    for (x=xStart; x<xEnd+step; x+=step)
     {
         y=function(x);
         printf ("y=%f\n x=%f\n", y, x); 
@@ -45,9 +45,9 @@ float function(float x)
     return (3*pow(log(x), 2) + 6*log(x)-5);
 }
 
-double check_function(float x1, float x2)
+void check_interval(float xStart, float xEnd)
 {
-    if (x1 - x2 > -DBL_EPSILON)
+    if (xStart - xEnd > -DBL_EPSILON)
     {
         puts("Wrong numbers");
         abort();
@@ -55,12 +55,12 @@ double check_function(float x1, float x2)
 }
 double fun_scan(double value) 
 {
-  double value;
-  int result = scanf("%lf", &value);
+    double value;
+    int result = scanf("%lf", &value);
     if ((result != 1)||(result<0))
     {
-      puts("error io");
-      abort();
+        puts("error io");
+        abort();
     } 
     return value;
 }
