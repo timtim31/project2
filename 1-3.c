@@ -23,25 +23,24 @@ double fun_scan(double value);
 */
 int main()
 {
-    float r;
     float m = fun_scan(m);
     float f = fun_scan(f);
-    r=formula(m, f);
+    float r = formula(m, f);
     printf("r=%f\n", r);
     return 0;
 }
 
 float formula(float m, float f)
 {
-    const float g=6.67*pow(10, -6);
-    return (pow(((g*m*m)/f),0.5));
+    const float g = 6.67 * pow(10, -6);
+    return (pow(((g * m * m) / f), 0.5));
 }
 
 double fun_scan(double value) 
 {
     double value;
     int result = scanf("%lf", &value);
-    if ((result != 1)||(result>-DBL_EPSILON))
+    if ((result != 1) || (result < DBL_EPSILON))
     {
         puts("error io");
         abort();
