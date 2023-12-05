@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/**
+* @brief Функция проверки ввода на число 
+* @param value значение вводимого параметра 
+* @return Результат проверки   
+*/
+double fun_scan(double value);
+
+/**
+* @brief Функция нахождения минимума двух вводимых чисел 
+* @param a, b значения вводимых параметров
+* @return Результат функции    
+*/
+int min(int a, int b);
+
+/**
+* @brief Функция нахождения максимума двух вводимых чисел 
+* @param a, b значения вводимых параметров
+* @return Результат функции    
+*/
+int max(int a, int b);
+
+/**
+* @brief Вводимое значение для входа в программу 
+* @return Вывод 0, если программа неверна. Иначе вывод 1
+*/
+int main()
+{
+    int first, midle, last;
+    int a = fun_scan(a);
+    int b = fun_scan(b);
+    int c = fun_scan(c);
+    first = max(max(a, b), c);
+    last = min(min(a, b), c);
+    midle = ((a + b + c) - (first + last));
+    printf("%d\n%d\n%d\n", first, midle, last);
+    printf("%d\n%d\n%d\n", last, midle, first);
+    return 0;
+}
+
+int min(int a, int b)
+{
+    if (a > b)
+    {
+        return b;
+    }
+    return a;
+}
+
+int max(int a, int b)
+{
+    if (a > b)
+    {
+        return a;
+    }
+    return b;
+}
+
+double fun_scan(double value) 
+{
+    int result = scanf("%lf", &value);
+    if (result != 1)
+    {
+        printf("error io");
+        abort();
+    } 
+    return value;
+}
