@@ -4,45 +4,42 @@
 #include <float.h>
 
 /**
- * @brief Функция расчета формулы
- * @param x значение параметра
- * @return Значение вычисления y  
+* @brief Функция расчета формулы
+* @param x значение параметра
+* @return Значение вычисления y  
 */
 float function(float x);
 
 /**
- * @brief Функция проверки ввода на число 
- * @param value значение вводимого параметра 
- * @return Результат проверки   
+* @brief Функция проверки ввода на число 
+* @return Результат проверки   
 */
-double fun_scan(double value);
+double fun_scan();
 
 /**
- * @brief Функция проверки ввода концов отрезка 
- * @param xStart, xEnd значения вводимыъх параметров концов отрезка
- * @return Результат проверки   
+* @brief Функция проверки ввода концов отрезка 
+* @param xStart, xEnd значения вводимыъх параметров концов отрезка  
 */
 float check_interval(float xStart, float xEnd);
 
 /**
- * @brief Точка входа в программу  
- * @return Вывод 0, если программа работает неверно. Иначе вывод 1  
+* @brief Точка входа в программу  
+* @return Вывод 0, если программа работает неверно. Иначе вывод 1  
 */
 int main () 
 { 
-    float x, y, xStart = fun_scan(), xEnd = fun_scan(), step = fun_scan(); 
+    float xStart = fun_scan(), xEnd = fun_scan(), step = fun_scan(); 
     check_interval(xStart, xEnd);
-    for (x=xStart; x<xEnd+step; x+=step)
+    for (float x = xStart; x < xEnd + step; x += step)
     {
-        y=function(x);
-        printf ("y=%f\n x=%f\n", y, x); 
+        printf ("y=%f\n x=%f\n", function(x), x);
     }
     return 0;
 }
 
 float function(float x)
 {
-    return (3*pow(log(x), 2) + 6*log(x)-5);
+    return (3 * pow(log(x), 2) + 6 * log(x) - 5);
 }
 
 void check_interval(float xStart, float xEnd)
@@ -57,7 +54,7 @@ double fun_scan(double value)
 {
     double value;
     int result = scanf("%lf", &value);
-    if ((result != 1)||(result<0))
+    if ((result != 1)||(result < 0))
     {
         puts("error io");
         abort();
