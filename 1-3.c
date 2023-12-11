@@ -12,10 +12,9 @@ float formula(float m, float f);
 
 /**
 * @brief Функция проверки ввода на число 
-* @param value значение вводимого параметра 
 * @return Результат проверки   
 */
-double fun_scan(double value);
+double fun_scan();
 
 /**
 * @brief Вводимое значение для входа в программу 
@@ -36,7 +35,7 @@ float formula(float m, float f)
     return (pow(((g * m * m) / f), 0.5));
 }
 
-double fun_scan(double value) 
+double fun_scan() 
 {
     double value;
     int result = scanf("%lf", &value);
