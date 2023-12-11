@@ -1,6 +1,7 @@
 #include <stdio.h> 
 #include <math.h> 
 #include <stdlib.h>
+#include <float.h>
 
 /** 
 * @brief Функция расчета формулы
@@ -25,10 +26,9 @@ float function3(float x, float a);
 
 /**
 * @brief Функция проверки ввода на число 
-* @param value значение вводимого параметра 
 * @return Результат проверки   
 */
-double fun_scan(double value);
+double fun_scan();
 
 /**
  * @brief Вводимое значение для входа в программу 
@@ -39,22 +39,19 @@ int main()
     float y;
     const float a = 2.5;
     float x = fun_scan();
-    if (x < 0.5) 
+    if (x - 0.5 < DBL_EPSILON) 
     {
-        y  = function1(x, a);
-        printf("y=%f\n", y);
+        printf("y=%f\n", function1(x, a));
     }
     else
     {
-        if (x == 0.5) 
+        if (x - 0.5 == DBL_EPSILON) 
         {
-            y = function2(x, a);
-            printf("y=%f\n", y);
+            printf("y=%f\n", function2(x, a));
         }
         else 
         {
-            y = function3(x, a);
-            printf("y=%f\n", y);
+            printf("y=%f\n", function3(x, a));
         }
     }
     return 0;
@@ -74,7 +71,7 @@ float function3(float x, float a)
     return (pow((a * pow(x, 2) - 1), 0.5));
 }
 
-double fun_scan(double value) 
+double fun_scan() 
 {
     double value;
     int result = scanf("%lf", &value);
