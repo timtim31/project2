@@ -3,16 +3,17 @@
 #include <errno.h>
 
 /**
-* @brief Функция перечисляемого типа enum для выбора формулы
+* @brief Структура хранит константы, указывающие выбор функции пользователем 
+* @brief choose1 хранит значение выбора вывода чисел в порядке убывания 
+* @brief choose2 хранит значение выбора вывода чисел в порядке возрастания
 */
 enum formula  {choose1 = 1, choose2 = 2};
 
 /**
 * @brief Функция проверки ввода на число 
-* @param value значение вводимого параметра 
 * @return Результат проверки   
 */
-double fun_scan(double value);
+double fun_scan();
 
 /**
 * @brief Функция нахождения минимума двух вводимых чисел 
@@ -34,34 +35,32 @@ int max(int a, int b);
 */
 int main()
 {
-    int first, midle, last;
-    int a = fun_scan(a);
-    int b = fun_scan(b);
-    int c = fun_scan(c);
-    int d = fun_scan(d);
-    first = max(max(a, b), c);
-    last = min(min(a, b), c);
-    midle = ((a + b + c) - (first + last));
-    enum formula numbers = (enum formula)(d);
+    int a = fun_scan();
+    int b = fun_scan();
+    int c = fun_scan();
+    int choice = fun_scan();
+    int first = max(max(a, b), c);
+    int last = min(min(a, b), c);
+    int midle = ((a + b + c) - (first + last));
+    enum formula numbers = (enum formula)(choice);
     switch(numbers)
     {
         case choose1:
         {
             printf("%d %d %d ", first, midle, last);
-            return 0;
         }
         case choose2:
         {
              printf("%d %d %d ", last, midle, first);
-             return 0;
         }
         default:
         {
             errno = EIO;
             perror("error");
-            return 0;
+            return 1;
         }
     }
+    return 0;
 }
 
 int min(int a, int b)
@@ -82,9 +81,9 @@ int max(int a, int b)
     return b;
 }
 
-
-double fun_scan(double value) 
+double fun_scan() 
 {
+    double value;
     int result = scanf("%lf", &value);
     if (result != 1)
     {
