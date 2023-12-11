@@ -22,10 +22,9 @@ double fun_scan();
 */
 int main()
 {
-    float m = fun_scan(m);
-    float f = fun_scan(f);
-    float r = formula(m, f);
-    printf("r=%f\n", r);
+    float m = fun_scan();
+    float f = fun_scan();
+    printf("r=%f\n", formula(m, f));
     return 0;
 }
 
