@@ -36,7 +36,6 @@ double fun_scan();
 */
 int main()
 {
-    float y;
     const float a = 2.5;
     float x = fun_scan();
     if (x - 0.5 < DBL_EPSILON) 
