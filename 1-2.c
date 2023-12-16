@@ -10,10 +10,9 @@ float function(float x);
 
 /**
 * @brief Функция проверки ввода на число 
-* @param  value значение вводимого параметра 
 * @return Результат проверки   
 */
-double fun_scan(double value);
+double fun_scan();
 
 /**
 * @brief Вводимое значение для входа в программу 
@@ -31,7 +30,7 @@ float function(float x)
   return x / 2.5;
 }
 
-double fun_scan(double value)
+double fun_scan()
 {
   double value;
   int result = scanf("%lf", &value);
