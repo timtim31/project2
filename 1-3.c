@@ -30,7 +30,7 @@ int main()
 
 float formula(float m, float f)
 {
-    const float g = 6.67 * pow(10, -6);
+    const float g = 6.67 * pow(10, -11);
     return (pow(((g * m * m) / f), 0.5));
 }
 
