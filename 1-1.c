@@ -31,7 +31,7 @@ int main ()
 
 float getA(float x, float y, float z) 
 { 
-    return ((pow(z, 2 * x) + pow (y, -1) * cos(z + y) * x) / (x + 1)); 
+    return ((pow(z, 2 * x) + pow (y, -x) * cos(z + y) * x) / (x + 1)); 
 } 
 float getB(float x, float y, float z) 
 {  
