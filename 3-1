@@ -20,7 +20,13 @@ double fun_scan();
 * @brief Функция проверки ввода концов отрезка 
 * @param xStart, xEnd значения вводимыъх параметров концов отрезка  
 */
-float check_interval(float xStart, float xEnd);
+void check_interval(float xStart, float xEnd);
+
+/**
+* @brief Функция проверки существования функции
+* @param x значение вводимого параметра фунуции  
+*/
+void check_function(float x);
 
 /**
 * @brief Точка входа в программу  
@@ -32,6 +38,7 @@ int main ()
     check_interval(xStart, xEnd);
     for (float x = xStart; x < xEnd + step; x += step)
     {
+        check_function(x);
         printf ("y=%f\n x=%f\n", function(x), x);
     }
     return 0;
@@ -50,11 +57,20 @@ void check_interval(float xStart, float xEnd)
         abort();
     }
 }
-double fun_scan(double value) 
+
+void check_function(float x)
+{
+    if (x < DBL_EPSILON)
+    {
+        puts("Function doesn't exist");
+    }
+}
+
+double fun_scan() 
 {
     double value;
     int result = scanf("%lf", &value);
-    if ((result != 1)||(result < 0))
+    if (result != 1)
     {
         puts("error io");
         abort();
