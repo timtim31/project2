@@ -3,25 +3,68 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+/**
+* @brief Функция проверки ввода на число 
+* @return Результат проверки   
+*/
 double fun_scan();
-float function(int a);
+
+/**
+* @brief Функция расчета суммы последовательности чисел 
+* @param a вводимое значение количества чисел последовательности 
+* @return c значение вычисления суммы последовательности  
+*/
+float sumofnumbers(int a);
+
+/**
+* @brief Функция расчета суммы последовательности чисел, каждый элемент которой должен быть больше заданного е
+* @param a вводимое значение количества чисел последовательности 
+* @param е вводимое значение минимального возможного числа последовательности 
+* @return c значение вычисления суммы последовательности  
+*/
+float sumofnumbers1(int a);
+
+/**
+* @brief Функция расчета факториала вводимого числа 
+* @param k вводимое значение числа для нохождения его факториала 
+* @return result значение вычисления факториала данного числа 
+*/
 int factorial(int k);
 
+/**
+* @brief Точка входа в программу  
+* @return Вывод 0, если программа работает неверно. Иначе вывод 1  
+*/
 int main()
 {
     int a = fun_scan();
-    float s=function(a);
-    printf("%f\n", s);
+    printf("%f\n", sumofnumbers(a));
+    printf("%f\n", sumofnumbers1(a));
     return 0;
 }
 
-float function(int a)
+float sumofnumbers(int a)
 {
-    float b, c;
-    for(int i = 1; i < a; i++)
+    float c;
+    for(int i = 0; i <= a; i++)
     {
-        b=pow(-1,i)/factorial(i*2);
-        c+=b;
+        float b = pow(-1, i) / factorial(i * 2);
+        c += b;
+    }
+    return c;
+}
+
+float sumofnumbers1(int a)
+{
+    int e = fun_scan();
+    float c;
+    for(int i = 0; i <= a; i++)
+    {
+        if (i >= e)
+        {
+            float b = pow(-1, i) / factorial( i * 2);
+            c += b;
+        }
     }
     return c;
 }
@@ -29,11 +72,11 @@ float function(int a)
 int factorial(int k)
 {
     int result = 1;
-    for (int i=1; i<=k; i++)
+    for (int i = 1; i <= k; i++)
     {
         result = result * i;
-        return result;
     }
+    return result;
 }
 
 double fun_scan() 
