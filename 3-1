@@ -17,6 +17,12 @@ float function(float x);
 double fun_scan();
 
 /**
+* @brief Функция проверки ввода шага функции на положительное число 
+* @return Результат проверки   
+*/
+double checkstep();
+
+/**
 * @brief Функция проверки ввода концов отрезка 
 * @param xStart, xEnd значения вводимыъх параметров концов отрезка  
 */
@@ -26,7 +32,7 @@ void check_interval(float xStart, float xEnd);
 * @brief Функция проверки существования функции
 * @param x значение вводимого параметра фунуции  
 */
-void check_function(float x);
+bool check_function(float x);
 
 /**
 * @brief Точка входа в программу  
@@ -34,12 +40,18 @@ void check_function(float x);
 */
 int main () 
 { 
-    float xStart = fun_scan(), xEnd = fun_scan(), step = fun_scan(); 
+    float xStart = fun_scan(), xEnd = fun_scan(), step = checkstep(); 
     check_interval(xStart, xEnd);
     for (float x = xStart; x < xEnd + step; x += step)
     {
-        check_function(x);
-        printf ("y=%f\n x=%f\n", function(x), x);
+        if check_function(x)
+        {
+            printf ("y=%f\n x=%f\n", function(x), x);
+        }
+        else
+        {
+            puts("Function doesn't exist");
+        }
     }
     return 0;
 }
@@ -58,12 +70,9 @@ void check_interval(float xStart, float xEnd)
     }
 }
 
-void check_function(float x)
+bool check_function(float x)
 {
-    if (x < DBL_EPSILON)
-    {
-        puts("Function doesn't exist");
-    }
+    return x > -DBL_EPSILON;
 }
 
 double fun_scan() 
@@ -71,6 +80,18 @@ double fun_scan()
     double value;
     int result = scanf("%lf", &value);
     if (result != 1)
+    {
+        puts("error io");
+        abort();
+    } 
+    return value;
+}
+
+double checkstep() 
+{
+    double value;
+    int result = scanf("%lf", &value);
+    if ((result != 1)||(result < DBL_EPSILON))
     {
         puts("error io");
         abort();
