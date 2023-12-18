@@ -1,0 +1,100 @@
+#include <math.h> 
+#include <stdio.h> 
+#include <stdlib.h>
+#include <float.h>
+
+/**
+* @brief Функция расчета формулы
+* @param x значение параметра
+* @return Значение вычисления y  
+*/
+float function(float x);
+
+/**
+* @brief Функция проверки ввода на число 
+* @return Результат проверки   
+*/
+double fun_scan();
+
+/**
+* @brief Функция проверки ввода шага функции на положительное число 
+* @return Результат проверки   
+*/
+double checkstep();
+
+/**
+* @brief Функция проверки ввода концов отрезка 
+* @param xStart, xEnd значения вводимыъх параметров концов отрезка  
+*/
+void check_interval(float xStart, float xEnd);
+
+/**
+* @brief Функция проверки существования функции
+* @param x значение вводимого параметра фунуции  
+*/
+bool check_function(float x);
+
+/**
+* @brief Точка входа в программу  
+* @return Вывод 0, если программа работает неверно. Иначе вывод 1  
+*/
+int main () 
+{ 
+    float xStart = fun_scan(), xEnd = fun_scan(), step = checkstep(); 
+    check_interval(xStart, xEnd);
+    for (float x = xStart; x < xEnd + step; x += step)
+    {
+        if check_function(x)
+        {
+            printf ("y=%f\n x=%f\n", function(x), x);
+        }
+        else
+        {
+            puts("Function doesn't exist");
+        }
+    }
+    return 0;
+}
+
+float function(float x)
+{
+    return (3 * pow(log(x), 2) + 6 * log(x) - 5);
+}
+
+void check_interval(float xStart, float xEnd)
+{
+    if (xStart - xEnd > -DBL_EPSILON)
+    {
+        puts("Wrong numbers");
+        abort();
+    }
+}
+
+bool check_function(float x)
+{
+    return x > -DBL_EPSILON;
+}
+
+double fun_scan() 
+{
+    double value;
+    int result = scanf("%lf", &value);
+    if (result != 1)
+    {
+        puts("error io");
+        abort();
+    } 
+    return value;
+}
+
+double checkstep() 
+{
+    double value;
+    int result = scanf("%lf", &value);
+    if ((result != 1)||(result < DBL_EPSILON))
+    {
+        puts("error io");
+        abort();
+    } 
+    return value;
+}
