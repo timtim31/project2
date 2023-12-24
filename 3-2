@@ -43,43 +43,43 @@ double recurrentfun(int k);
 */
 int main()
 {
-	int count = fun_scan();
-	printf("%f\n", sumofnumbers(count));
-	printf("%f\n", sumofnumbersE(count));
-	return 0;
+    int count = fun_scan();
+    printf("%f\n", sumofnumbers(count));
+    printf("%f\n", sumofnumbersE(count));
+    return 0;
 }
 
 double sumofnumbers(int count)
 {
-	double current = 1;
-	double sum = current;
-	for (int k = 0; k - count < DBL_EPSILON; k++)
-	{
-		current *= recurrentfun(k);
-		sum += current;
-	}
-	return sum;
+    double current = 1;
+    double sum = current;
+    for (int k = 0; k - count < DBL_EPSILON; k++)
+    {
+	current *= recurrentfun(k);
+	sum += current;
+    }
+    return sum;
 }
 
 double sumofnumbersE(int count)
 {
     double e = fun_scanE();
     double current = 1;
-	double sum = current;
-	for (int k = 0; k - count < DBL_EPSILON; k++)
+    double sum = current;
+    for (int k = 0; k - count < DBL_EPSILON; k++)
+    {
+	if ((current - e) >= DBL_EPSILON)
 	{
-	    if ((current - e) >= DBL_EPSILON)
-	    {
-	        current *= recurrentfun(k);
-		    sum += current;
-	    }
+	    current *= recurrentfun(k);
+	    sum += current;
 	}
-	return sum;
+    }
+    return sum;
 }
 
 double recurrentfun(int k)
 {
-	return -1.0 / (4 * pow(k, 2) + 6 * k + 2);
+    return (-1.0 / (4 * pow(k, 2) + 6 * k + 2));
 }
 
 int fun_scan() 
@@ -105,3 +105,5 @@ double fun_scanE()
     } 
     return value;
 }
+
+
