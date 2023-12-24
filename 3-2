@@ -1,35 +1,41 @@
-#include <math.h>
-#include <stdio.h>
+#include <math.h> 
+#include <stdio.h> 
 #include <stdlib.h>
-#include <stdbool.h>
+#include <float.h>
 
 /**
-* @brief Функция проверки ввода на число 
+* @brief Функция проверки ввода на положительное число 
 * @return Результат проверки   
 */
-double fun_scan();
+int fun_scan();
+
+/**
+* @brief Функция проверки ввода на положительное число и меньшее модулю первого члена последовательности 
+* @return Результат проверки   
+*/
+double fun_scanE();
 
 /**
 * @brief Функция расчета суммы последовательности чисел 
-* @param a вводимое значение количества чисел последовательности 
+* @param count вводимое значение количества чисел последовательности 
 * @return sum значение вычисления суммы последовательности  
 */
-float sumofnumbers(int a);
+double sumofnumbers(int count);
 
 /**
 * @brief Функция расчета суммы последовательности чисел, каждый элемент которой должен быть больше заданного е
-* @param a вводимое значение количества чисел последовательности 
+* @param count вводимое значение количества чисел последовательности 
 * @param е вводимое значение минимального возможного числа последовательности 
 * @return sum значение вычисления суммы последовательности  
 */
-float sumofnumbers1(int a);
+double sumofnumbersE(int count);
 
 /**
-* @brief Функция расчета факториала вводимого числа 
-* @param k вводимое значение числа для нохождения его факториала 
-* @return result значение вычисления факториала данного числа 
+* @brief Функция расчета рекурентного члена последовательности
+* @param k - номер члена последовательности
+* @return Значение рекурентного члена последовательности
 */
-int factorial(int k);
+double recurrentfun(int k);
 
 /**
 * @brief Точка входа в программу  
@@ -37,55 +43,64 @@ int factorial(int k);
 */
 int main()
 {
-    int a = fun_scan();
-    printf("%f\n", sumofnumbers(a));
-    printf("%f\n", sumofnumbers1(a));
-    return 0;
+	int count = fun_scan();
+	printf("%f\n", sumofnumbers(count));
+	printf("%f\n", sumofnumbersE(count));
+	return 0;
 }
 
-float sumofnumbers(int a)
+double sumofnumbers(int count)
 {
-    float sum;
-    for(int i = 0; i <= a; i++)
-    {
-        float b = pow(-1, i) / factorial(i * 2);
-        sum += b;
-    }
-    return sum;
+	double current = 1;
+	double sum = current;
+	for (int k = 0; k - count < DBL_EPSILON; k++)
+	{
+		current *= recurrentfun(k);
+		sum += current;
+	}
+	return sum;
 }
 
-float sumofnumbers1(int a)
+double sumofnumbersE(int count)
 {
-    int e = fun_scan();
-    float sum;
-    for(int i = 0; i <= a; i++)
-    {
-        if (i >= e)
-        {
-            float b = pow(-1, i) / factorial( i * 2);
-            sum += b;
-        }
-    }
-    return sum;
+    double e = fun_scanE();
+    double current = 1;
+	double sum = current;
+	for (int k = 0; k - count < DBL_EPSILON; k++)
+	{
+	    if ((current - e) >= DBL_EPSILON)
+	    {
+	        current *= recurrentfun(k);
+		    sum += current;
+	    }
+	}
+	return sum;
 }
 
-int factorial(int k)
+double recurrentfun(int k)
 {
-    int result = 1;
-    for (int i = 1; i <= k; i++)
-    {
-        result = result * i;
-    }
-    return result;
+	return -1.0 / (4 * pow(k, 2) + 6 * k + 2);
 }
 
-double fun_scan() 
+int fun_scan() 
+{
+    int value;
+    int result = scanf("%d", &value);
+    if ((result != 1) || (value < DBL_EPSILON))
+    {
+        puts("error");
+        abort();
+    } 
+    return value;
+}
+
+double fun_scanE() 
 {
     double value;
     int result = scanf("%lf", &value);
-    if (result != 1)
+    if ((result != 1) || (value < DBL_EPSILON) || (value - recurrentfun(0) <= DBL_EPSILON))
     {
-        printf("error io");
+        puts("error");
         abort();
     } 
     return value;
