@@ -64,8 +64,8 @@ double sumofnumbers(int count)
 double sumofnumbersE(int count)
 {
     double e = fun_scanE();
-    double current = 0;
-    double sum = current;
+    double current = 1;
+    double sum = 0;
     for (int k = 0; fabs(current) - e < DBL_EPSILON; k++)
     {
 	sum += current;
