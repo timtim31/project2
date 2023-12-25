@@ -5,41 +5,48 @@
 #include <malloc.h>
 #include <math.h>
 #include <stdbool.h>
+
 /**
  * @brief Функция присваивает целочисленное значение переменной
  * @param - сообщение для пользователя
  * @return целочисленная цифра
 */
 int scan_f(const char* const message);
+
 /**
  * @brief Функция выделяет память под массив
  * @param size длина массива
  * @return array указатель на пустой массив
 */
 int* get_array(const int size);
+
 /**
- * @brief Функция заполняет массив, которые вводит пользователь
+ * @brief Функция заполняет массив элементами, которые вводит пользователь
  * @param array указатель на заполняемый массив
  * @param size длина массива
 */
 void FillArrayUser(int* const array, const size_t size);
+
 /**
  * @brief Функция заполняет массив рандомными числами в диапазоне [begin : end]
  * @param array указатель на заполняемый массив
  * @param size длина массива
 */
 void FillArrayRandom(int* const array, const size_t size);
+
 /**
  * @brief Функция присваивает переменной целочисленное значение и проверяет его на положителность
  * @return number положительное число
 */
 size_t get_size();
+
 /**
  * @brief Функция выводит массив на экран
  * @param array указатель на заполняемый массив
  * @param size длина массива
 */
 void print_array(const int* const  array, const size_t size);
+
 /**
  * @brief Функция копирующая элементы одного массива в другой
  * @param Current исходный массив
@@ -47,6 +54,7 @@ void print_array(const int* const  array, const size_t size);
  * @param size длина массива
 */
 void copy_array(int* const current, int* copy, const size_t size);
+
 /**
  * @brief Функция меняет предпоследний элемент массива на максимальный по модулю.
  * @param array указатель на массив
@@ -54,6 +62,7 @@ void copy_array(int* const current, int* copy, const size_t size);
  * @return результат
 */
 int *task1(int* array, const size_t size);
+
 /**
  * @brief Фунция находит количество тех элементов, значения которых делятся на заданное число N без остатка.
  * @param array указатель на массив
@@ -61,6 +70,7 @@ int *task1(int* array, const size_t size);
  * @return 0
 */
 int task2(const int* const array, const size_t size);
+
 /**
  * @brief Функция находит номер первой пары соседних элементов с разными знаками.
  * @param array указатель на массив
@@ -68,17 +78,20 @@ int task2(const int* const array, const size_t size);
  * @return Итоговый ответ для третьего задания
 */
 int task3(const int* const array, const size_t size);
+
 /**
  * @brief Функция, освобождающая массив
  * @param array указатель на массив
 */
 void free_array(int* array);
+
 /**
- * @brief Функция проверяет, что конец больше начала
+ * @brief Функция проверяет концы промежутка
  * @param begin начало диапазона
  * @param end конец диапазона 
 */
 void CheckRange(const int begin, const int end);
+
 /**
  * @brief структура хранит константы, указывающие выбор пользователя заполнить массив
  * @brief User хранит значение, вызывающее ввод массива вручную
@@ -89,6 +102,7 @@ enum Choices
     User = 1,
     Random = 2
 };
+
 /**
  * @brief точка входа в программу
  * @return код ошибки (0 - успех)
@@ -160,15 +174,6 @@ int* get_array(const int size)
     return array;
 }
 
-void FillArrayUser(int* const array, const size_t size)
-{
-    puts("Введите элементы массива: ");
-    for (size_t i = 0; i < size; i++)
-    {
-        array[i] = scan_f("Введите элемент = ");           
-    }
-}
-
 void CheckRange(const int begin, const int end)
 {
     if (begin > end)
@@ -178,10 +183,18 @@ void CheckRange(const int begin, const int end)
     }
 }
 
+void FillArrayUser(int* const array, const size_t size)
+{
+    puts("Введите элементы массива: ");
+    for (size_t i = 0; i < size; i++)
+    {
+        array[i] = scan_f("Введите элемент = ");           
+    }
+}
+
 void FillArrayRandom(int *const array, const size_t size) 
 {
-    const int begin = scan_f("Введите нижнюю границу диапазона: "), 
-            end = scan_f("Введите верхнюю границу диапазона: ");
+    const int begin = scan_f("Введите нижнюю границу диапазона: "), end = scan_f("Введите верхнюю границу диапазона: ");
     CheckRange(begin, end);
     for (size_t i = 0; i < size; i++)
     {
@@ -208,44 +221,41 @@ void copy_array(int* const current, int* copy, const size_t size)
 
 int *task1( int* array, const size_t size)
 {
-    int temp = abs(array[0]);
-    for (size_t i = 1; i < size; i++)
+    int composition = 1;
+    for (size_t i = 0; i <= size; i++)
     {
-        if (abs(array[i]) > temp)
+        if ((abs(array[i]) < 5) && (i % 2 == 0))
         {
-            temp = array[i];
+            composition *= array[i];
         }
     }
-    array[size - 2] = temp;
-    return array;
+    return composition;
 }
 
 int task2(const int* const array, const size_t size)
 {
-    int temp = 0;
-    const int number = scan_f("Введите число на которое должно делится без остатка: ");
-    for (size_t i = 0; i < size; i++) 
+    int A = scanf();
+    int count = 0;
+    for (size_t i = 0; i <= size; i++) 
     {
-        if (array[i] % number == 0)
+        if ((array[i] % 2 != 0) && (abs(array[i]) > A))
         {
-            temp += 1;
+            count += 1;
         }   
     }
-    return temp;
+    return count;
 }
 
 int task3(const int* const array, const size_t size)
 {
-    for (size_t i = 0; i < size - 1 && size >= 2; i++) 
+    for (size_t i = 0; i <= size; i++) 
     {
-        if (array[i] * array[i + 1] < 0) 
+        if ((i % 2 != 0) && (array[i] % 3 == 0))
         {
-            return i + 1;
+            array[i] = array[i] * i 
         }
     }
-    printf("%s\n", "Число для 3 задания не найдено");
-    abort();
-  
+    return array;
 }
 
 void free_array(int* array)
