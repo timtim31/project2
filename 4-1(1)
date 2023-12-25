@@ -7,95 +7,98 @@
 #include <stdbool.h>
 
 /**
- * @brief Функция присваивает целочисленное значение переменной
- * @param - сообщение для пользователя
- * @return целочисленная цифра
+* @brief Функция присваивает целочисленное значение переменной
+* @param сообщение для пользователя
+* @return целочисленная цифра
 */
 int scan_f(const char* const message);
 
 /**
- * @brief Функция выделяет память под массив
- * @param size длина массива
- * @return array указатель на пустой массив
+* @brief Функция выделяет память под массив
+* @param size длина массива
+* @return array указатель на пустой массив
 */
 int* get_array(const int size);
 
 /**
- * @brief Функция заполняет массив элементами, которые вводит пользователь
- * @param array указатель на заполняемый массив
- * @param size длина массива
+* @brief Функция заполняет массив элементами, которые вводит пользователь
+* @param array указатель на заполняемый массив
+* @param size длина массива
 */
 void FillArrayUser(int* const array, const size_t size);
 
 /**
- * @brief Функция заполняет массив рандомными числами в диапазоне [begin : end]
- * @param array указатель на заполняемый массив
- * @param size длина массива
+* @brief Функция заполняет массив рандомными числами в диапазоне [begin : end]
+* @param array указатель на заполняемый массив
+* @param size длина массива
 */
 void FillArrayRandom(int* const array, const size_t size);
 
 /**
- * @brief Функция присваивает переменной целочисленное значение и проверяет его на положителность
- * @return number положительное число
+* @brief Функция присваивает переменной целочисленное значение и проверяет его на положителность
+* @return number положительное число
 */
 size_t get_size();
 
 /**
- * @brief Функция выводит массив на экран
- * @param array указатель на заполняемый массив
- * @param size длина массива
+* @brief Функция выводит массив на экран
+* @param array указатель на заполняемый массив
+* @param size длина массива
 */
 void print_array(const int* const  array, const size_t size);
 
 /**
- * @brief Функция копирующая элементы одного массива в другой
- * @param Current исходный массив
- * @param Copy пустой массив
- * @param size длина массива
+* @brief Функция копирующая элементы одного массива в другой
+* @param Current исходный массив
+* @param Copy пустой массив
+* @param size длина массива
 */
 void copy_array(int* const current, int* copy, const size_t size);
 
 /**
- * @brief Функция меняет предпоследний элемент массива на максимальный по модулю.
- * @param array указатель на массив
- * @param size размерность массива
- * @return результат
+* @brief Функция нахождения произведения чётных элементов, значения которых по модулю меньше 5
+* @param array указатель на массив
+* @param size размерность массива
+* @param composition произведение элементов массива, которые удовлетворяют условию задачи
+* @return Вычисление произведения
 */
-int *task1(int* array, const size_t size);
+int *task1(int* array, const size_t size, int composition);
 
 /**
- * @brief Фунция находит количество тех элементов, значения которых делятся на заданное число N без остатка.
- * @param array указатель на массив
- * @param size размерность массива
- * @return 0
+* @brief Фунция нахождения количества элементов, значения которых нечетны и по модулю превосходят заданное А
+* @param array указатель на массив
+* @param size размерность массива
+* @param A вводимое значение числа для сравнения с элементами массива
+* @param count количество элементов, удовлетворяющих условию задачи
+* @return Количество элементов 
 */
-int task2(const int* const array, const size_t size);
+int task2(const int* const array, const size_t size, int A, int count);
 
 /**
- * @brief Функция находит номер первой пары соседних элементов с разными знаками.
- * @param array указатель на массив
- * @param size размерность массива
- * @return Итоговый ответ для третьего задания
+* @brief Функция умножения всех чётных элементов массива, кратных 3, на их номера 
+* @param array указатель на массив
+* @param size размерность массива
+* @return Массив, после выполнения поставленных в условии задач
 */
 int task3(const int* const array, const size_t size);
 
 /**
- * @brief Функция, освобождающая массив
- * @param array указатель на массив
+* @brief Функция, освобождающая массив
+* @param array указатель на массив
 */
 void free_array(int* array);
 
 /**
- * @brief Функция проверяет концы промежутка
- * @param begin начало диапазона
- * @param end конец диапазона 
+* @brief Функция проверяет концы диапазона
+* @param begin начало диапазона
+* @param end конец диапазона 
 */
 void CheckRange(const int begin, const int end);
 
 /**
- * @brief структура хранит константы, указывающие выбор пользователя заполнить массив
- * @brief User хранит значение, вызывающее ввод массива вручную
- * @brief Random хранит значение, вызывающее ввод массива случайными числами
+* @brief структура хранит константы, указывающие выбор пользователя заполнения массива
+* @brief User хранит значение, вызывающее ввод массива вручную
+* @brief Random хранит значение, вызывающее ввод массива случайными числами
 */
 enum Choices
 {
@@ -104,9 +107,9 @@ enum Choices
 };
 
 /**
- * @brief точка входа в программу
- * @return код ошибки (0 - успех)
- */
+* @brief Точка входа в программу  
+* @return Вывод 0, если программа работает неверно. Иначе вывод 1  
+*/
 int main() 
 {
     srand(time(NULL)); 
@@ -219,7 +222,7 @@ void copy_array(int* const current, int* copy, const size_t size)
     }
 }
 
-int *task1( int* array, const size_t size)
+int *task1( int* array, const size_t size, int composition)
 {
     int composition = 1;
     for (size_t i = 0; i <= size; i++)
@@ -232,7 +235,7 @@ int *task1( int* array, const size_t size)
     return composition;
 }
 
-int task2(const int* const array, const size_t size)
+int task2(const int* const array, const size_t size, int A, int count)
 {
     int A = scanf();
     int count = 0;
@@ -252,7 +255,7 @@ int task3(const int* const array, const size_t size)
     {
         if ((i % 2 != 0) && (array[i] % 3 == 0))
         {
-            array[i] = array[i] * i 
+            array[i] = array[i] * i;
         }
     }
     return array;
