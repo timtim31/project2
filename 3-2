@@ -53,7 +53,7 @@ double sumofnumbers(int count)
 {
     double current = 1;
     double sum = current;
-    for (int k = 0; k - count < DBL_EPSILON; k++)
+    for (int k = 0; k < count; k++)
     {
 	current *= recurrentfun(k);
 	sum += current;
@@ -64,15 +64,12 @@ double sumofnumbers(int count)
 double sumofnumbersE(int count)
 {
     double e = fun_scanE();
-    double current = 1;
+    double current = 0;
     double sum = current;
-    for (int k = 0; k - count < DBL_EPSILON; k++)
+    for (int k = 0; fabs(current + 1) - e < DBL_EPSILON; k++)
     {
-	if ((current - e) >= DBL_EPSILON)
-	{
-	    current *= recurrentfun(k);
-	    sum += current;
-	}
+	sum += current;
+	current *= recurrentfun(k);
     }
     return sum;
 }
@@ -98,7 +95,7 @@ double fun_scanE()
 {
     double value;
     int result = scanf("%lf", &value);
-    if ((result != 1) || (value < DBL_EPSILON) || (value - recurrentfun(0) <= DBL_EPSILON))
+    if ((result != 1) || (value < DBL_EPSILON) || (value - 1 > DBL_EPSILON))
     {
         puts("error");
         abort();
