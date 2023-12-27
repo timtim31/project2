@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
+
+/**
+* @brief Структура хранит константы, указывающие выбор функции пользователем 
+* @brief choose1 хранит значение выбора вывода чисел в порядке убывания 
+* @brief choose2 хранит значение выбора вывода чисел в порядке возрастания
+*/
+enum formula  {choose1 = 1, choose2 = 2};
+
+/**
+* @brief Функция проверки ввода на число 
+* @return Результат проверки   
+*/
+double fun_scan();
+
+/**
+* @brief Функция нахождения минимума двух вводимых чисел 
+* @param a, b значения вводимых параметров
+* @return Результат функции    
+*/
+int min(int a, int b);
+
+/**
+* @brief Функция нахождения максимума двух вводимых чисел 
+* @param a, b значения вводимых параметров
+* @return Результат функции    
+*/
+int max(int a, int b);
+
+/**
+* @brief Вводимое значение для входа в программу 
+* @return Вывод 0, если программа неверна. Иначе вывод 1
+*/
+int main()
+{
+    int a = fun_scan();
+    int b = fun_scan();
+    int c = fun_scan();
+    int choice = fun_scan();
+    int first = max(max(a, b), c);
+    int last = min(min(a, b), c);
+    int midle = ((a + b + c) - (first + last));
+    enum formula numbers = (enum formula)(choice);
+    switch(numbers)
+    {
+        case choose1:
+        {
+            printf("%d %d %d ", first, midle, last);
+        }
+        case choose2:
+        {
+             printf("%d %d %d ", last, midle, first);
+        }
+        default:
+        {
+            errno = EIO;
+            perror("error");
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int min(int a, int b)
+{
+    if (a > b)
+    {
+        return b;
+    }
+    return a;
+}
+
+int max(int a, int b)
+{
+    if (a > b)
+    {
+        return a;
+    }
+    return b;
+}
+
+double fun_scan() 
+{
+    double value;
+    int result = scanf("%lf", &value);
+    if (result != 1)
+    {
+        printf("error io");
+        abort();
+    } 
+    return value;
+}
