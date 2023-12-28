@@ -26,14 +26,14 @@ int* get_array(const int size);
 * @param array указатель на заполняемый массив
 * @param size длина массива
 */
-void FillArrayUser(int* const array, const size_t size);
+void FillArrayUser(int* array, const size_t size);
 
 /**
 * @brief Функция заполняет массив рандомными числами в диапазоне [begin : end]
 * @param array указатель на заполняемый массив
 * @param size длина массива
 */
-void FillArrayRandom(int* const array, const size_t size);
+void FillArrayRandom(int* array, const size_t size);
 
 /**
 * @brief Функция присваивает переменной целочисленное значение и проверяет его на положителность
@@ -46,7 +46,7 @@ size_t get_size();
 * @param array указатель на заполняемый массив
 * @param size длина массива
 */
-void print_array(const int* const  array, const size_t size);
+void print_array(int* const  array, const size_t size);
 
 /**
 * @brief Функция копирующая элементы одного массива в другой
@@ -62,7 +62,7 @@ void copy_array(int* const current, int* copy, const size_t size);
 * @param size размерность массива
 * @return composition произведение элементов массива, которые удовлетворяют условию задачи
 */
-int task1(const int* const array, const size_t size);
+int task1(int* const array, const size_t size);
 
 /**
 * @brief Фунция нахождения количества элементов, значения которых нечетны и по модулю превосходят заданное А
@@ -70,7 +70,7 @@ int task1(const int* const array, const size_t size);
 * @param size размерность массива
 * @return count количество элементов, удовлетворяющих условию задачи
 */
-int task2(const int* const array, const size_t size);
+int task2(int* const array, const size_t size);
 
 /**
 * @brief Функция умножения всех чётных элементов массива, кратных 3, на их номера 
@@ -78,7 +78,7 @@ int task2(const int* const array, const size_t size);
 * @param size размерность массива
 * @return Массив, после выполнения поставленных в условии задач
 */
-int *task3(const int* const array, const size_t size);
+int *task3(int* array, const size_t size);
 
 /**
 * @brief Функция, освобождающая массив
@@ -98,10 +98,10 @@ void CheckRange(const int begin, const int end);
 * @param сообщение для пользователя
 * @return целочисленная цифра
 */
-int fun_scan(const char* const message);
+int fun_scan(char* const message);
 
 /**
-* @brief Функция проверки ввода на положительное число 
+* @brief Функция проверки ввода на число 
 * @return Результат проверки   
 */
 int check_fun();
@@ -158,6 +158,7 @@ void checkbelonging(int value, const int begin, const int end)
         abort();
     }
 }
+
 size_t get_size()
 {
    int size =  fun_scan("Введите размер массива: ");
@@ -192,7 +193,7 @@ void CheckRange(const int begin, const int end)
     }
 }
 
-void FillArrayUser(int* const array, const size_t size)
+void FillArrayUser(int* array, const size_t size)
 {
     const int begin = fun_scan("Введите нижнюю границу диапазона: "), end = fun_scan("Введите верхнюю границу диапазона: ");
     puts("Введите элементы массива: ");
@@ -203,7 +204,7 @@ void FillArrayUser(int* const array, const size_t size)
     }
 }
 
-void FillArrayRandom(int *const array, const size_t size) 
+void FillArrayRandom(int* array, const size_t size) 
 {
     const int begin = fun_scan("Введите нижнюю границу диапазона: "), end = fun_scan("Введите верхнюю границу диапазона: ");
     CheckRange(begin, end);
@@ -213,7 +214,7 @@ void FillArrayRandom(int *const array, const size_t size)
     }
 }
 
-void print_array(const int* const  array, const size_t size)
+void print_array(int* const  array, const size_t size)
 {
     puts("Элементы массива: ");
     for(size_t i = 0; i < size; i++)
@@ -230,7 +231,7 @@ void copy_array(int* const current, int* copy, const size_t size)
     }
 }
 
-int task1(const int* const array, const size_t size)
+int task1(int* const array, const size_t size)
 {
     int composition = 1;
     for (size_t i = 0; i < size; i++)
@@ -243,13 +244,13 @@ int task1(const int* const array, const size_t size)
     return composition;
 }
 
-int task2(const int* const array, const size_t size)
+int task2(int* const array, const size_t size)
 {
-    int A = check_fun();
+    int a = check_fun();
     int count = 0;
-    for (size_t i = 0; i <= size; i++) 
+    for (size_t i = 0; i < size; i++) 
     {
-        if ((array[i] % 2 != 0) && (abs(array[i]) > A))
+        if ((array[i] % 2 != 0) && (abs(array[i]) > a))
         {
             count += 1;
         }   
@@ -257,9 +258,9 @@ int task2(const int* const array, const size_t size)
     return count;
 }
 
-int *task3(const int* const array, const size_t size)
+int *task3(int* array, const size_t size)
 {
-    for (size_t i = 0; i <= size; i++) 
+    for (size_t i = 0; i < size; i++) 
     {
         if ((i % 2 != 0) && (array[i] % 3 == 0))
         {
@@ -277,7 +278,7 @@ void free_array(int* array)
     }
 }
 
-int fun_scan(const char* const message)
+int fun_scan(char* const message)
 {
     int value = 0;
     printf("%s", message);
