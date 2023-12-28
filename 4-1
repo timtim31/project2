@@ -6,19 +6,13 @@
 #include <math.h>
 #include <stdbool.h>
 
-
 /**
-* @brief Функция присваивает целочисленное значение переменной
-* @param сообщение для пользователя
-* @return целочисленная цифра
+* @brief Функция проверки принадлежности вводимого значения к диапазону 
+* @param value вводимое значение
+* @param begin начало диапазона
+* @param end конец диапазона
 */
-int fun_scan(const char* const message);
-
-/**
-* @brief Функция проверки ввода на положительное число 
-* @return Результат проверки   
-*/
-int check_fun();
+void checkbelonging(int value, const int begin, const int end);
 
 /**
 * @brief Функция выделяет память под массив
@@ -100,6 +94,19 @@ void free_array(int* array);
 void CheckRange(const int begin, const int end);
 
 /**
+* @brief Функция присваивает целочисленное значение переменной
+* @param сообщение для пользователя
+* @return целочисленная цифра
+*/
+int fun_scan(const char* const message);
+
+/**
+* @brief Функция проверки ввода на положительное число 
+* @return Результат проверки   
+*/
+int check_fun();
+
+/**
 * @brief структура хранит константы, указывающие выбор пользователя заполнения массива
 * @brief User хранит значение, вызывающее ввод массива вручную
 * @brief Random хранит значение, вызывающее ввод массива случайными числами
@@ -143,32 +150,14 @@ int main()
     return 0;
 }
 
-int fun_scan(const char* const message)
+void checkbelonging(int value, const int begin, const int end)
 {
-    int value = 0;
-    printf("%s", message);
-    int result = scanf("%d", &value);
-    if (result != 1)
+    if ((value < begin) || value > end))
     {
-        errno = EIO;
-        perror("Error :");
+        printf("Элемент не входит в заданный диапазон");
         abort();
     }
-    return value;
 }
-
-int check_fun() 
-{
-    int value;
-    int result = scanf("%d", &value);
-    if (result != 1)
-    {
-        puts("error");
-        abort();
-    } 
-    return value;
-}
-
 size_t get_size()
 {
    int size =  fun_scan("Введите размер массива: ");
@@ -205,10 +194,12 @@ void CheckRange(const int begin, const int end)
 
 void FillArrayUser(int* const array, const size_t size)
 {
+    const int begin = fun_scan("Введите нижнюю границу диапазона: "), end = fun_scan("Введите верхнюю границу диапазона: ");
     puts("Введите элементы массива: ");
     for (size_t i = 0; i < size; i++)
     {
-        array[i] = fun_scan("Введите элемент = ");           
+        array[i] = fun_scan("Введите элемент = ");
+        void checkbelonging(array[i], begin, end);
     }
 }
 
@@ -284,4 +275,30 @@ void free_array(int* array)
     {
         free(array);
     }
+}
+
+int fun_scan(const char* const message)
+{
+    int value = 0;
+    printf("%s", message);
+    int result = scanf("%d", &value);
+    if (result != 1)
+    {
+        errno = EIO;
+        perror("Error :");
+        abort();
+    }
+    return value;
+}
+
+int check_fun() 
+{
+    int value;
+    int result = scanf("%d", &value);
+    if (result != 1)
+    {
+        puts("error");
+        abort();
+    } 
+    return value;
 }
