@@ -2,6 +2,7 @@
 #include <stdio.h> 
 #include <stdlib.h>
 #include <float.h>
+#include <stdbool.h>
 
 /**
 * @brief Функция расчета формулы
@@ -38,13 +39,13 @@ bool check_function(float x);
 * @brief Точка входа в программу  
 * @return Вывод 0, если программа работает неверно. Иначе вывод 1  
 */
-int main () 
+int main() 
 { 
     float xStart = fun_scan(), xEnd = fun_scan(), step = checkstep(); 
     check_interval(xStart, xEnd);
     for (float x = xStart; x < xEnd + step; x += step)
     {
-        if check_function(x)
+        if (check_function(x))
         {
             printf ("y=%f\n x=%f\n", function(x), x);
         }
