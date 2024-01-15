@@ -273,7 +273,7 @@ int getnewsize(int* array, size_t size)
 
 int *task2(int* array, size_t size, size_t new_size)
 {
-    int* new_array = (int*)malloc(new_size * sizeof(int));
+    int* new_array = get_array(new_size);
     int j = 0;
     for (int i = 0; i < size; i++) 
     {
