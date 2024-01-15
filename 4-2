@@ -120,9 +120,10 @@ int main()
 {
     srand(time(NULL)); 
     size_t size = get_size(); 
-    int *Array = get_array(size);
+    int *array = get_array(size);
     int choice = fun_scan("Выберите способ заполнения массива\n 1. Вручную, 2. Автозаполнение\n");
     const int begin = fun_scan("Введите нижнюю границу диапазона: "), end = fun_scan("Введите верхнюю границу диапазона: ");
+    CheckRange(begin, end);
     switch ((enum Choices)choice)
     {
         case User:
@@ -137,21 +138,19 @@ int main()
     }
     printf("First task: ");
     int* new_array_1 = get_array(size);
-    copy_array(Array, new_array_1, size);
+    copy_array(array, new_array_1, size);
     print_array(task1(new_array_1, size), size);
-    free_array(Array);
     free_array(new_array_1);
     printf("Second task: ");
     int* new_array_2 = get_array(size);
-    copy_array(Array, new_array_2, size);
+    copy_array(array, new_array_2, size);
     print_array(task2(new_array_2, size), size);
-    free_array(Array);
     free_array(new_array_2);
     printf("Third task: ");
     int* new_array_3 = get_array(size);
-    copy_array(Array, new_array_3, size);
+    copy_array(array, new_array_3, size);
     print_array(task3(new_array_3, size), size);
-    free_array(Array);
+    free_array(array);
     free_array(new_array_3);
     return 0;
 }
@@ -204,13 +203,12 @@ void FillArrayUser(int* array, const size_t size)
     for (size_t i = 0; i < size; i++)
     {
         array[i] = fun_scan("Введите элемент = ");
-        void checkbelonging(int array[i], const int begin, const int end);
+        checkbelonging(array[i], begin, end);
     }
 }
 
 void FillArrayRandom(int* array, const size_t size) 
 {
-    CheckRange(begin, end);
     for (size_t i = 0; i < size; i++)
     {
         array[i] = begin + rand() % (end - begin + 1);
