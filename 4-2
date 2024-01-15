@@ -65,12 +65,20 @@ void copy_array(int* const current, int* copy, const size_t size);
 int *task1(int* array, const size_t size);
 
 /**
+* @brief Фунция нахождения размера нового массива для задания task2
+* @param array указатель на массив
+* @param size размерность массива
+* @return Размер нового массива
+*/
+int getnewsize(int* array, size_t size);
+
+/**
 * @brief Фунция удаления из массива элементов, у которых первая и вторая цифры одинаковые 
 * @param array указатель на массив
 * @param size размерность массива
 * @return Массив, после выполнения поставленных в условии задач
 */
-int *task2(int* array, size_t size);
+int *task2(int* array, size_t size, size_t new_size);
 
 /**
 * @brief Функция формирования нового массива M по правилу: элемент четный, тогда Mi = i * Pi
@@ -141,9 +149,10 @@ int main()
     print_array(task1(new_array_1, size), size);
     free_array(new_array_1);
     printf("Second task: ");
-    int* new_array_2 = get_array(size);
-    copy_array(array, new_array_2, size);
-    print_array(task2(new_array_2, size), size);
+    int new_size =  getnewsize(array, size);
+    int* new_array_2 = get_array(new_size);
+    copy_array(array, new_array_2, new_size);
+    print_array(task2(new_array_2, size, new_size), new_size);
     free_array(new_array_2);
     printf("Third task: ");
     int* new_array_3 = get_array(size);
@@ -249,20 +258,32 @@ int *task1(int* array, const size_t size)
     return array;
 }
 
-int *task2(int* array, size_t size)
+int getnewsize(int* array, size_t size)
 {
-    for (size_t i = size - 1; i >= 0; i--)
+    int count = 0;
+    for (size_t i = 0; i < size; i++) 
     {
         if ((abs(array[i]) % 10) == (abs(array[i]) / 10))
         {
-            size -= 1; 
-            for (int j = i; j < size; j++) 
-            {
-                array[j] = array[j + 1];
-            }
-        }   
+            count += 1; 
+        }
     }
-    return array;
+    return(size - count);
+}
+
+int *task2(int* array, size_t size, size_t new_size)
+{
+    int* new_array = (int*)malloc(new_size * sizeof(int));
+    int j = 0;
+    for (int i = 0; i < size; i++) 
+    {
+        if ((abs(array[i]) % 10) != (abs(array[i]) / 10))
+        {
+            new_array[j] = array[i]; 
+            j+=1;
+        }
+    }
+    return(new_array);
 }
 
 int *task3(int* array, const size_t size)
