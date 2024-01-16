@@ -70,7 +70,7 @@ int *task1(int* array, const size_t size);
 * @param size размерность массива
 * @return Размер нового массива
 */
-int getnewsize(int* array, size_t size);
+int getnewsize(const int* array, size_t size);
 
 /**
 * @brief Фунция удаления из массива элементов, у которых первая и вторая цифры одинаковые 
@@ -78,7 +78,7 @@ int getnewsize(int* array, size_t size);
 * @param size размерность массива
 * @return Массив, после выполнения поставленных в условии задач
 */
-int *task2(int* array, size_t size, size_t new_size);
+int *task2(const int* array, int* new_array_2, const size_t size, const size_t new_size);
 
 /**
 * @brief Функция формирования нового массива M по правилу: элемент четный, тогда Mi = i * Pi
@@ -151,8 +151,7 @@ int main()
     printf("Second task: ");
     int new_size =  getnewsize(array, size);
     int* new_array_2 = get_array(new_size);
-    copy_array(array, new_array_2, new_size);
-    print_array(task2(new_array_2, size, new_size), new_size);
+    print_array(task2(array, new_array_2, size, new_size), new_size);
     free_array(new_array_2);
     printf("Third task: ");
     int* new_array_3 = get_array(size);
@@ -258,7 +257,7 @@ int *task1(int* array, const size_t size)
     return array;
 }
 
-int getnewsize(int* array, size_t size)
+int getnewsize(const int* array, size_t size)
 {
     int count = 0;
     for (size_t i = 0; i < size; i++) 
@@ -271,19 +270,18 @@ int getnewsize(int* array, size_t size)
     return(size - count);
 }
 
-int *task2(int* array, size_t size, size_t new_size)
+int *task2(const int* array, int* new_array_2, const size_t size, const size_t new_size)
 {
-    int* new_array = get_array(new_size);
     int j = 0;
-    for (int i = 0; i < size; i++) 
+    for (size_t i = 0; i < size; i++) 
     {
         if ((abs(array[i]) % 10) != (abs(array[i]) / 10))
         {
-            new_array[j] = array[i]; 
+            new_array_2[j] = array[i]; 
             j+=1;
         }
     }
-    return(new_array);
+    return(new_array_2);
 }
 
 int *task3(int* array, const size_t size)
