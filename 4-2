@@ -3,8 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <malloc.h>
-#include <math.h>
-#include <stdbool.h>
+
 
 /**
 * @brief Функция проверки принадлежности вводимого значения к диапазону 
@@ -70,7 +69,7 @@ int *task1(int* array, const size_t size);
 * @param size размерность массива
 * @return Размер нового массива
 */
-int getnewsize(const int* array, size_t size);
+int getnewsize(const int* array, const size_t size);
 
 /**
 * @brief Фунция удаления из массива элементов, у которых первая и вторая цифры одинаковые 
@@ -257,7 +256,7 @@ int *task1(int* array, const size_t size)
     return array;
 }
 
-int getnewsize(const int* array, size_t size)
+int getnewsize(const int* array, const size_t size)
 {
     int count = 0;
     for (size_t i = 0; i < size; i++) 
