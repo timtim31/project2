@@ -1,0 +1,106 @@
+#include <math.h> 
+#include <stdio.h> 
+#include <stdlib.h>
+#include <float.h>
+
+/**
+* @brief Функция проверки ввода на положительное число 
+* @return Результат проверки   
+*/
+int fun_scan();
+
+/**
+* @brief Функция проверки ввода на положительное число и меньшее модулю первого члена последовательности 
+* @return Результат проверки   
+*/
+double fun_scanE();
+
+/**
+* @brief Функция расчета суммы последовательности чисел 
+* @param count вводимое значение количества чисел последовательности 
+* @return sum значение вычисления суммы последовательности  
+*/
+double sumofnumbers(int count);
+
+/**
+* @brief Функция расчета суммы последовательности чисел, каждый элемент которой должен быть больше заданного е
+* @param count вводимое значение количества чисел последовательности 
+* @param е вводимое значение минимального возможного числа последовательности 
+* @return sum значение вычисления суммы последовательности  
+*/
+double sumofnumbersE(int count);
+
+/**
+* @brief Функция расчета рекурентного члена последовательности
+* @param k - номер члена последовательности
+* @return Значение рекурентного члена последовательности
+*/
+double recurrentfun(int k);
+
+/**
+* @brief Точка входа в программу  
+* @return Вывод 0, если программа работает неверно. Иначе вывод 1  
+*/
+int main()
+{
+    int count = fun_scan();
+    printf("%f\n", sumofnumbers(count));
+    printf("%f\n", sumofnumbersE(count));
+    return 0;
+}
+
+double sumofnumbers(int count)
+{
+    double current = 1;
+    double sum = current;
+    for (int k = 0; k < count; k++)
+    {
+	current *= recurrentfun(k);
+	sum += current;
+    }
+    return sum;
+}
+
+double sumofnumbersE(int count)
+{
+    double e = fun_scanE();
+    double current = 1;
+    double sum = 0;
+    for (int k = 0; fabs(current) - e < DBL_EPSILON; k++)
+    {
+	sum += current;
+	current *= recurrentfun(k);
+    }
+    return sum;
+}
+
+double recurrentfun(int k)
+{
+    return (-1.0 / (4 * pow(k, 2) + 6 * k + 2));
+}
+
+int fun_scan() 
+{
+    int value;
+    int result = scanf("%d", &value);
+    if ((result != 1) || (value < DBL_EPSILON))
+    {
+        puts("error");
+        abort();
+    } 
+    return value;
+}
+
+double fun_scanE() 
+{
+    double value;
+    int result = scanf("%lf", &value);
+    if ((result != 1) || (value < DBL_EPSILON) || (value - 1 > DBL_EPSILON))
+    {
+        puts("error");
+        abort();
+    } 
+    return value;
+}
+
+
