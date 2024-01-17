@@ -26,14 +26,14 @@ int* get_array(const int size);
 * @param array указатель на заполняемый массив
 * @param size длина массива
 */
-void FillArrayUser(int* array, const size_t size);
+void FillArrayUser(int* array, const size_t size, const int begin, const int end);
 
 /**
 * @brief Функция заполняет массив рандомными числами в диапазоне [begin : end]
 * @param array указатель на заполняемый массив
 * @param size длина массива
 */
-void FillArrayRandom(int* array, const size_t size);
+void FillArrayRandom(int* array, const size_t size, const int begin, const int end);
 
 /**
 * @brief Функция присваивает переменной целочисленное значение и проверяет его на положителность
@@ -132,10 +132,10 @@ int main()
     switch ((enum Choices)choice)
     {
       case User:
-              FillArrayUser(Array, size);
+              FillArrayUser(Array, size, begin, end);
           break;
       case Random:
-              FillArrayRandom(Array, size);
+              FillArrayRandom(Array, size, begin, end);
           break;
       default:
           puts("Insert a valid choice!\n");
@@ -154,7 +154,7 @@ int main()
 
 void checkbelonging(const int value, const int begin, const int end)
 {
-    if ((value < begin) || value > end))
+    if ((value < begin) || (value > end))
     {
         printf("Элемент не входит в заданный диапазон");
         abort();
@@ -195,17 +195,17 @@ void CheckRange(const int begin, const int end)
     }
 }
 
-void FillArrayUser(int* array, const size_t size)
+void FillArrayUser(int* array, const size_t size, const int begin, const int end)
 {
     puts("Введите элементы массива: ");
     for (size_t i = 0; i < size; i++)
     {
         array[i] = fun_scan("Введите элемент = ");
-        void checkbelonging(array[i], begin, end);
+        checkbelonging(array[i], begin, end);
     }
 }
 
-void FillArrayRandom(int* array, const size_t size) 
+void FillArrayRandom(int* array, const size_t size, const int begin, const int end) 
 {
     for (size_t i = 0; i < size; i++)
     {
