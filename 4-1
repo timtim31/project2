@@ -128,6 +128,7 @@ int main()
     int *Array = get_array(size);
     int choice = fun_scan("Выберите способ заполнения массива\n 1. Вручную, 2. Автозаполнение\n");
     const int begin = fun_scan("Введите нижнюю границу диапазона: "), end = fun_scan("Введите верхнюю границу диапазона: ");
+    CheckRange(begin, end);
     switch ((enum Choices)choice)
     {
       case User:
@@ -206,7 +207,6 @@ void FillArrayUser(int* array, const size_t size)
 
 void FillArrayRandom(int* array, const size_t size) 
 {
-    CheckRange(begin, end);
     for (size_t i = 0; i < size; i++)
     {
         array[i] = begin + rand() % (end - begin + 1);
