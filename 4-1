@@ -76,9 +76,8 @@ int task2(int* const array, const size_t size);
 * @brief Функция умножения всех чётных элементов массива, кратных 3, на их номера 
 * @param array указатель на массив
 * @param size размерность массива
-* @return Массив, после выполнения поставленных в условии задач
 */
-int *task3(int* array, const size_t size);
+void *task3(int* new_array_3, const size_t size);
 
 /**
 * @brief Функция, освобождающая массив
@@ -145,8 +144,9 @@ int main()
     printf("Second task: %d\n", task2(Array, size));
     printf("Third task: ");
     int* new_array_3 = get_array(size);
-    copy_array(Array, new_array_3, size);
-    print_array(task3(new_array_3, size), size);
+    copy_array(array, new_array_3, size);
+    task3(new_array_3, size);
+    print_array(new_array_3, size);
     free_array(Array);
     free_array(new_array_3);
     return 0;
@@ -257,16 +257,15 @@ int task2(int* const array, const size_t size)
     return count;
 }
 
-int *task3(int* array, const size_t size)
+void *task3(int* new_array_3, const size_t size)
 {
     for (size_t i = 0; i < size; i++) 
     {
-        if ((i % 2 != 0) && (array[i] % 3 == 0))
+        if ((i % 2 != 0) && (new_array_3[i] % 3 == 0))
         {
-            array[i] == array[i] * i;
+            new_array_3[i] == new_array_3[i] * i;
         }
     }
-    return array;
 }
 
 void free_array(int* array)
