@@ -1,0 +1,319 @@
+#include <stdio.h>
+#include <errno.h>
+#include <stdlib.h>
+#include <time.h>
+#include <malloc.h>
+
+
+/**
+* @brief Функция проверки принадлежности вводимого значения к диапазону 
+* @param value вводимое значение
+* @param begin начало диапазона
+* @param end конец диапазона
+*/
+void checkbelonging(const int value, const int begin, const int end);
+
+/**
+* @brief Функция выделяет память под массив
+* @param size длина массива
+* @return array указатель на пустой массив
+*/
+int* get_array(const int size);
+
+/**
+* @brief Функция заполняет массив элементами, которые вводит пользователь
+* @param array указатель на заполняемый массив
+* @param size длина массива
+*/
+void FillArrayUser(int* array, const size_t size, const int begin, const int end);
+
+/**
+* @brief Функция заполняет массив рандомными числами в диапазоне [begin : end]
+* @param array указатель на заполняемый массив
+* @param size длина массива
+*/
+void FillArrayRandom(int* array, const size_t size, const int begin, const int end);
+
+/**
+* @brief Функция присваивает переменной целочисленное значение и проверяет его на положителность
+* @return number положительное число
+*/
+size_t get_size();
+
+/**
+* @brief Функция выводит массив на экран
+* @param array указатель на заполняемый массив
+* @param size длина массива
+*/
+void print_array(int* const  array, const size_t size);
+
+/**
+* @brief Функция копирующая элементы одного массива в другой
+* @param Current исходный массив
+* @param Copy пустой массив
+* @param size длина массива
+*/
+void copy_array(int* const current, int* copy, const size_t size);
+
+/**
+* @brief Функция замены последнего отрицательного элемента массива на модуль первого 
+* @param array указатель на массив
+* @param size размерность массива
+* @return Массив, после выполнения поставленных в условии задач
+*/
+void *task1(int* new_array_1, const size_t size);
+
+/**
+* @brief Фунция нахождения размера нового массива для задания task2
+* @param array указатель на массив
+* @param size размерность массива
+* @return Размер нового массива
+*/
+int getnewsize(const int* array, const size_t size);
+
+/**
+* @brief Фунция удаления из массива элементов, у которых первая и вторая цифры одинаковые 
+* @param array указатель на массив
+* @param size размерность массива
+* @return Массив, после выполнения поставленных в условии задач
+*/
+void *task2(const int* array, int* new_array_2, const size_t size, const size_t new_size);
+
+/**
+* @brief Функция формирования нового массива M по правилу: элемент четный, тогда Mi = i * Pi
+* @brief Если нечетный, тогда Mi = -Pi
+* @param array указатель на массив
+* @param size размерность массива
+* @return Массив, после выполнения поставленных в условии задач
+*/
+void *task3(int* new_array_3, const size_t size);
+
+/**
+* @brief Функция, освобождающая массив
+* @param array указатель на массив
+*/
+void free_array(int* array);
+
+/**
+* @brief Функция проверяет концы диапазона
+* @param begin начало диапазона
+* @param end конец диапазона 
+*/
+void CheckRange(const int begin, const int end);
+
+/**
+* @brief Функция присваивает целочисленное значение переменной
+* @param сообщение для пользователя
+* @return целочисленная цифра
+*/
+int fun_scan(char* const message);
+
+/**
+* @brief структура хранит константы, указывающие выбор пользователя заполнения массива
+* @brief User хранит значение, вызывающее ввод массива вручную
+* @brief Random хранит значение, вызывающее ввод массива случайными числами
+*/
+enum Choices
+{
+    User = 1,
+    Random = 2
+};
+
+/**
+* @brief Точка входа в программу  
+* @return Вывод 0, если программа работает неверно. Иначе вывод 1  
+*/
+int main() 
+{
+    srand(time(NULL)); 
+    size_t size = get_size(); 
+    int *array = get_array(size);
+    int choice = fun_scan("Выберите способ заполнения массива\n 1. Вручную, 2. Автозаполнение\n");
+    const int begin = fun_scan("Введите нижнюю границу диапазона: "), end = fun_scan("Введите верхнюю границу диапазона: ");
+    CheckRange(begin, end);
+    switch ((enum Choices)choice)
+    {
+        case User:
+            FillArrayUser(array, size, begin, end);
+            break;
+        case Random:
+            FillArrayRandom(array, size, begin, end);
+            break;
+        default:
+            puts("Insert a valid choice!\n");
+            return 1;
+    }
+    printf("First task: ");
+    int* new_array_1 = get_array(size);
+    copy_array(array, new_array_1, size);
+    task1(new_array_1, size);
+    print_array(new_array_1, size);
+    free_array(new_array_1);
+    printf("Second task: ");
+    int new_size =  getnewsize(array, size);
+    int* new_array_2 = get_array(new_size);
+    task2(array, new_array_2, size, new_size);
+    print_array(new_array_2, new_size);
+    free_array(new_array_2);
+    printf("Third task: ");
+    int* new_array_3 = get_array(size);
+    copy_array(array, new_array_3, size);
+    task3(new_array_3, size);
+    print_array(new_array_3, size);
+    free_array(array);
+    free_array(new_array_3);
+    return 0;
+}
+
+void checkbelonging(const int value, const int begin, const int end)
+{
+    if ((value < begin) || (value > end))
+    {
+        printf("Элемент не входит в заданный диапазон");
+        abort();
+    }
+}
+
+size_t get_size()
+{
+   int size =  fun_scan("Введите размер массива: ");
+   if (size <= 0)
+   {
+       errno = ERANGE;
+       perror("Error :");
+       abort();
+   }
+   return (size_t)size;
+}
+
+int* get_array(const int size)
+{
+    int* array = malloc(size * sizeof(int));
+    if (NULL == array)
+    {
+        errno = ENOMEM;
+        perror("Error :");
+        abort();
+    }
+    return array;
+}
+
+void CheckRange(const int begin, const int end)
+{
+    if (begin > end)
+    {
+        puts("error ");
+        abort();
+    }
+}
+
+void FillArrayUser(int* array, const size_t size, const int begin, const int end)
+{
+    puts("Введите элементы массива: ");
+    for (size_t i = 0; i < size; i++)
+    {
+        array[i] = fun_scan("Введите элемент = ");
+        checkbelonging(array[i], begin, end);
+    }
+}
+
+void FillArrayRandom(int* array, const size_t size, const int begin, const int end) 
+{
+    for (size_t i = 0; i < size; i++)
+    {
+        array[i] = begin + rand() % (end - begin + 1);
+    }
+}
+
+void print_array(int* const  array, const size_t size)
+{
+    puts("Элементы массива: ");
+    for(size_t i = 0; i < size; i++)
+    {
+        printf("Элемент %zu = %d\n", i, array[i]);
+    }
+}
+
+void copy_array(int* const current, int* copy, const size_t size)
+{
+    for (size_t i = 0; i < size; i++)
+    {
+        copy[i] = current[i];
+    }
+}
+
+void *task1(int* new_array_1, const size_t size)
+{
+    int first = abs(new_array_1[0]);
+    for (size_t i = size - 1; i >= 0; i--)
+    {
+        if (new_array_1[i] < 0)
+        {
+            new_array_1[i] = first;
+            break;
+        }
+    }
+}
+
+int getnewsize(const int* array, const size_t size)
+{
+    int count = 0;
+    for (size_t i = 0; i < size; i++) 
+    {
+        if ((abs(array[i]) % 10) == (abs(array[i]) / 10))
+        {
+            count += 1; 
+        }
+    }
+    return(size - count);
+}
+
+void *task2(const int* array, int* new_array_2, const size_t size, const size_t new_size)
+{
+    int j = 0;
+    for (size_t i = 0; i < size; i++) 
+    {
+        if ((abs(array[i]) % 10) != (abs(array[i]) / 10))
+        {
+            new_array_2[j] = array[i]; 
+            j+=1;
+        }
+    }
+}
+
+void *task3(int* new_array_3, const size_t size)
+{
+    for (size_t i = 0; i < size; i++) 
+    {
+        if (i % 2 == 0)
+        {
+            new_array_3[i] = new_array_3[i] * i;
+        }
+        else
+        {
+            new_array_3[i] = -new_array_3[i];
+        }
+    }
+}
+
+void free_array(int* array)
+{
+    if (NULL != array)
+    {
+        free(array);
+    }
+}
+
+int fun_scan(char* const message)
+{
+    int value = 0;
+    printf("%s", message);
+    int result = scanf("%d", &value);
+    if (result != 1)
+    {
+        errno = EIO;
+        perror("Error :");
+        abort();
+    }
+    return value;
+}
